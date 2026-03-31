@@ -1,0 +1,140 @@
+/* Container Layout */
+.rx-media-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: flex-start; /* Aligns items to top on desktop */
+  position: sticky;
+  top: 40px;
+}
+
+/* Thumbnails Column (Left) */
+.rx-media-gallery__thumbnails {
+  width: 80px;
+  flex-shrink: 0;
+  max-height: 650px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.rx-media-gallery__thumbnails::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.rx-thumbnail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Thumbnail Items */
+.rx-thumbnail-btn {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.rx-thumbnail-btn:hover {
+  border-color: var(--color-text-faint);
+}
+
+.rx-thumbnail-btn.is-active {
+  border: 2px solid var(--color-accent); 
+}
+
+.rx-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+/* Main Viewer (Right) */
+.rx-media-gallery__main {
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0; /* Prevents flex children from overflowing width */
+  background: var(--color-primary-alt);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+}
+
+.rx-main-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  position: relative;
+}
+
+.rx-main-list__item {
+  display: none;
+  width: 100%;
+}
+
+.rx-main-list__item.is-active {
+  display: block;
+}
+
+.rx-main-img {
+  width: 100%;
+  height: auto;
+  max-height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+.rx-main-media-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.rx-main-media-tag {
+  width: 100%;
+  max-height: 700px;
+  border-radius: 8px;
+}
+
+/* Mobile Adaptation */
+@media screen and (max-width: 749px) {
+  .rx-media-gallery {
+    flex-direction: column-reverse;
+    align-items: stretch; 
+    gap: 12px;
+    padding: 10px;
+  }
+  
+  .rx-media-gallery__thumbnails {
+    width: 100%;
+    max-height: none; 
+    overflow-x: auto;
+  }
+  
+  .rx-thumbnail-list {
+    flex-direction: row;
+  }
+  
+  .rx-thumbnail-btn {
+    width: 60px;
+    flex-shrink: 0; 
+  }
+}

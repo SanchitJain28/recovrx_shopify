@@ -1,0 +1,214 @@
+.rx-duo {
+  background-color: var(--color-primary, #0A0A0A);
+  padding: clamp(40px, 5vw, 60px) 16px; /* Compact padding */
+  overflow: hidden;
+}
+
+.rx-duo .page-width {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header Alignment (Matching screenshot exactly) */
+.rx-duo__header {
+  max-width: 700px; /* Constrains width so text wraps cleanly on desktop */
+  margin-bottom: 24px; /* Tight compact margin */
+}
+
+.rx-duo__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  color: var(--color-text-primary, #FFFFFF);
+  line-height: 1.05;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.02em;
+}
+
+.rx-duo__subtext {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--color-text-muted, #A0A0A0);
+      letter-spacing: 0px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Grid Layout */
+.rx-duo__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; /* Super compact gap */
+}
+
+@media (min-width: 768px) {
+  .rx-duo__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* Card Styling */
+.rx-duo__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary-alt, #111111);
+  border: 1px solid var(--color-border, #2A2A2A);
+  border-radius: 12px;
+  overflow: hidden; /* Clips image and footer cleanly */
+}
+
+/* Top Media Section */
+.rx-duo__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Premium vertical ratio */
+}
+
+@media (min-width: 1024px) {
+  .rx-duo__media {
+    aspect-ratio: 1 / 1; /* Squarer on desktop */
+  }
+}
+
+.rx-duo__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.placeholder-svg.rx-duo__image {
+  background-color: var(--color-surface, #242424);
+  fill: var(--color-text-faint, #5A5A5A);
+}
+
+.rx-duo__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.5) 50%, transparent 100%);
+  z-index: 1;
+}
+
+/* Content over image */
+.rx-duo__media-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px; /* Compact internal padding */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .rx-duo__media-content {
+    padding: 24px;
+  }
+}
+
+.rx-duo__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.rx-duo__title {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: clamp(20px, 2vw, 20px);
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* 3RD GEN / PRO Badge */
+.rx-duo__badge {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  border: 1px solid var(--color-border, #2A2A2A);
+  padding: 3px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.rx-duo__desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(12px, 1.5vw, 12px);
+  color: var(--color-text-primary, #FFFFFF);
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  max-width: 90%;
+}
+
+/* CTA Button - White on Dark Image */
+.rx-duo__btn {
+  background-color: var(--color-text-primary, #FFFFFF);
+  color: var(--color-primary, #0A0A0A);
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.rx-duo__btn:hover {
+  background-color: var(--color-accent, #E3000F);
+  color: var(--color-text-primary, #FFFFFF);
+}
+
+/* Bottom Footer (The Science Claim) */
+.rx-duo__footer {
+  background-color: var(--color-primary-alt, #111111);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--color-border, #2A2A2A);
+}
+
+.rx-duo__icon-wrap {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-surface, #242424); /* Slightly lighter circle */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-muted, #A0A0A0);
+}
+
+.rx-duo__icon-wrap svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rx-duo__footer-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  color: var(--color-text-muted, #A0A0A0);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.rx-duo__footer-text p {
+  margin: 0;
+}
+
+.rx-duo__footer-text strong {
+  color: var(--color-text-primary, #FFFFFF);
+  font-weight: 600;
+}

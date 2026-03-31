@@ -1,0 +1,90 @@
+.rx-trust {
+  background-color: var(--color-primary-alt, #111111);
+  padding: clamp(24px, 3vw, 32px) 16px; /* Extremely compact vertical padding */
+  border-top: 1px solid var(--color-border, #2A2A2A);
+  border-bottom: 1px solid var(--color-border, #2A2A2A);
+  overflow: hidden;
+}
+
+.rx-trust .page-width {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Grid Layout */
+.rx-trust__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Mobile: 2x2 grid if there are 4 items */
+@media (min-width: 480px) {
+  .rx-trust__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+  }
+}
+
+/* Desktop: Single row of 4 */
+@media (min-width: 900px) {
+  .rx-trust__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Individual Badge Item */
+.rx-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Tight gap between icon and text */
+}
+
+/* Icon Wrapper */
+.rx-trust__icon-wrapper {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent, #E3000F); /* Electric Red for default SVG fallback */
+}
+
+.rx-trust__icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents stretching of custom uploaded images */
+}
+
+.rx-trust__icon--svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Text Content */
+.rx-trust__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rx-trust__title {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: clamp(14px, 1.5vw, 15px);
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  margin: 0 0 2px 0; /* Ultra-tight margin */
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rx-trust__desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  color: var(--color-text-muted, #A0A0A0);
+  margin: 0;
+  line-height: 1.3;
+}

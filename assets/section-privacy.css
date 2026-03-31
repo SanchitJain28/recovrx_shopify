@@ -1,0 +1,126 @@
+.rx-privacy {
+  background-color: var(--color-primary);
+  padding: 100px 20px;
+  color: var(--color-text-primary);
+}
+
+.rx-privacy__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+.rx-privacy__header {
+  text-align: center;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 40px;
+}
+
+.rx-privacy__title {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 6vw, 72px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1;
+  color: white;
+}
+
+.rx-privacy__subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 16px auto;
+}
+
+.rx-privacy__date {
+  font-family: var(--font-subhead);
+  font-size: 14px;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Content Blocks */
+.rx-privacy__content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.rx-privacy__block {
+  background-color: transparent;
+}
+
+.rx-privacy__block-title {
+  font-family: var(--font-subhead);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rx-privacy__block-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+.rx-privacy__block-text p {
+  margin-bottom: 16px;
+}
+
+.rx-privacy__block-text strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.rx-privacy__block-text a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.rx-privacy__block-text a:hover {
+  color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+/* Lists */
+.rx-privacy__block-text ul {
+  margin-left: 20px;
+  margin-bottom: 24px;
+  padding-left: 10px;
+}
+
+.rx-privacy__block-text li {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.rx-privacy__block-text ul li::marker {
+  color: var(--color-text-faint);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .rx-privacy {
+    padding: 60px 20px;
+  }
+  
+  .rx-privacy__content {
+    gap: 40px;
+  }
+
+  .rx-privacy__block-title {
+    font-size: 20px;
+  }
+}

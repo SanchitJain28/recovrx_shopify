@@ -9,76 +9,413 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "section_hero_banner_pcB4K6": {
+      "type": "section-hero-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_4L4Ktf": {
+          "type": "slide",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "image": "shopify://shop_images/Whisk_mjylvmnlbtmhnjny0so3atytgtykrtlwyjy40sz.jpg",
+            "overlay_opacity": 70,
+            "heading": "RECOVRX PRO Plus",
+            "subtext": "Unlock faster recovery, with all the benefits of a 15 minute massage in just two minutes.",
+            "btn_text": "Shop PRO Plus",
+            "btn_link": "shopify://products/propulse-percussion-massage-gun"
           }
         },
-        "button": {
-          "type": "buttons",
+        "slide_rLVHxJ": {
+          "type": "slide",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image": "shopify://shop_images/Whisk_584ffbc310f88d29d5d46d20a7c41a4adr.jpg",
+            "overlay_opacity": 40,
+            "heading": "RECOVRX PRO Plus",
+            "subtext": "Unlock faster recovery, with all the benefits of a 15 minute massage in just two minutes.",
+            "btn_text": "Shop PRO Plus",
+            "btn_link": "shopify://products/nexoknee-compression-sleeve"
+          }
+        },
+        "slide_iELmY8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_bbd5ff6aeca4bde8620474b52b025ed4dr.jpg",
+            "overlay_opacity": 40,
+            "heading": "RECOVRX PRO Plus",
+            "subtext": "Unlock faster recovery, with all the benefits of a 15 minute massage in just two minutes.",
+            "btn_text": "Shop PRO Plus",
+            "btn_link": "shopify://products/powerband-resistance-set"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "slide_4L4Ktf",
+        "slide_rLVHxJ",
+        "slide_iELmY8"
       ],
+      "name": "Hero Banner Carousel",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "autoplay": true,
+        "autoplay_speed": 5
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "section_shop_by_concern_Yjcg6x": {
+      "type": "section-shop-by-concern",
+      "blocks": {
+        "concern_q8qkJB": {
+          "type": "concern",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_bbd5ff6aeca4bde8620474b52b025ed4dr.jpg",
+            "title": "Muscle Pain",
+            "link": ""
+          }
+        },
+        "concern_j9Aqf8": {
+          "type": "concern",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_584ffbc310f88d29d5d46d20a7c41a4adr.jpg",
+            "title": "Mobility",
+            "link": ""
+          }
+        },
+        "concern_GjQdYP": {
+          "type": "concern",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_mjylvmnlbtmhnjny0so3atytgtykrtlwyjy40sz.jpg",
+            "title": "Recovery",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "concern_q8qkJB",
+        "concern_j9Aqf8",
+        "concern_GjQdYP"
+      ],
+      "name": "Shop by Concern",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
+        "heading": "Shop by Concern"
+      }
+    },
+    "section_best_sellers_JmMdwC": {
+      "type": "section-best-sellers",
+      "name": "Best Sellers Carousel",
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "best-selling",
+        "image_ratio": "square",
         "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "show_rating": true,
+        "quick_add": true
+      }
+    },
+    "section_trust_badges_KrRPWb": {
+      "type": "section-trust-badges",
+      "blocks": {
+        "badge_VzrPCa": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/fast.png",
+            "title": "Fast Shipping",
+            "subtext": "Free over ₹999"
+          }
+        },
+        "badge_TNAnVC": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/product-return.png",
+            "title": "30-Day Returns",
+            "subtext": "Risk-free guarantee"
+          }
+        },
+        "badge_4bjW84": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/warranty.png",
+            "title": "1-Year Warranty",
+            "subtext": "Clinical grade quality"
+          }
+        },
+        "badge_AL6nUg": {
+          "type": "badge",
+          "settings": {
+            "icon": "shopify://shop_images/verified.png",
+            "title": "Secure Checkout",
+            "subtext": "256-bit encryption"
+          }
+        }
+      },
+      "block_order": [
+        "badge_VzrPCa",
+        "badge_TNAnVC",
+        "badge_4bjW84",
+        "badge_AL6nUg"
+      ],
+      "name": "Trust Badges Row",
+      "settings": {}
+    },
+    "section_duo_features_KcBhNX": {
+      "type": "section-duo-features",
+      "blocks": {
+        "feature_card_BcJqKc": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_9dcefd40fdde211b60e4543a5916b996dr.jpg",
+            "title": "Percussion Massage Gun",
+            "badge": "PRO",
+            "description": "Clinically proven to reduce muscle soreness, diminish lactic acid and enhance performance.",
+            "btn_text": "Shop Pro",
+            "btn_link": "",
+            "footer_text": "<p><strong>89% of athletes</strong> stated their muscles felt more rejuvenated after 1 week</p>"
+          }
+        },
+        "feature_card_7kKte8": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Whisk_ee107aca3d28d8c9f2845065841ba2fddr.jpg",
+            "title": "Compression Knee Sleeve",
+            "badge": "NEW",
+            "description": "Our lightest, most breathable compression ever. Relieve aches and ease joint tension wherever life takes you.",
+            "btn_text": "Shop Sleeve",
+            "btn_link": "",
+            "footer_text": "<p><strong>Scientifically proven</strong> to ease tension and relieve joint pain</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_BcJqKc",
+        "feature_card_7kKte8"
+      ],
+      "name": "Duo Lifestyle Features",
+      "settings": {
+        "heading": "Experience recovery and relief anytime, anywhere",
+        "subtext": "From deep muscle treatment to on-the-go relief, our solutions offer the ultimate in athletic self-care and recovery."
+      }
+    },
+    "section_usp_stats_ACyMje": {
+      "type": "section-usp-stats",
+      "blocks": {
+        "stat_frc7Jc": {
+          "type": "stat",
+          "settings": {
+            "number": "50",
+            "prefix": "",
+            "suffix": "K+",
+            "label": "Athletes Recovered"
+          }
+        },
+        "stat_wDMwxX": {
+          "type": "stat",
+          "settings": {
+            "number": "50",
+            "prefix": "",
+            "suffix": "K+",
+            "label": "Athletes Recovered"
+          }
+        },
+        "stat_x4tyaH": {
+          "type": "stat",
+          "settings": {
+            "number": "4.9",
+            "prefix": "",
+            "suffix": "/5",
+            "label": "Average Rating"
+          }
+        },
+        "stat_3qT3XQ": {
+          "type": "stat",
+          "settings": {
+            "number": "30",
+            "prefix": "",
+            "suffix": "-Day",
+            "label": "Risk-Free Returns"
+          }
+        }
+      },
+      "block_order": [
+        "stat_frc7Jc",
+        "stat_wDMwxX",
+        "stat_x4tyaH",
+        "stat_3qT3XQ"
+      ],
+      "name": "USP / Stats Bar",
+      "settings": {}
+    },
+    "section_product_highlight_kaRnrJ": {
+      "type": "section-product-highlight",
+      "blocks": {
+        "feature_KxnMYh": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "16mm amplitude for deep tissue relief"
+          }
+        },
+        "feature_4hhhQi": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "QuietForce Technology™"
+          }
+        },
+        "feature_PMk4ze": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "300-minute battery life"
+          }
+        }
+      },
+      "block_order": [
+        "feature_KxnMYh",
+        "feature_4hhhQi",
+        "feature_PMk4ze"
+      ],
+      "name": "Product Highlight",
+      "settings": {
+        "image_position": "left",
+        "image": "shopify://shop_images/Whisk_9be9ec31423ad30b9254dfd55a1a5c61dr.jpg",
+        "subheading": "Deep Muscle Treatment",
+        "heading": "RECOVRX PRO Plus",
+        "text": "Designed for professionals. The ultimate smart percussive therapy device to accelerate recovery, reduce pain, and improve mobility.",
+        "btn_text": "Shop PRO Plus",
+        "btn_link": ""
+      }
+    },
+    "section_testimonials_8r9rmp": {
+      "type": "section-testimonials",
+      "blocks": {
+        "review_kMKraJ": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/Whisk_50106bfd71396f698964732990715df9dr.jpg",
+            "rating": 5,
+            "quote": "Game changer for my recovery routine. The amplitude on this device is unmatched compared to cheap knockoffs.",
+            "author": "Marcus T."
+          }
+        },
+        "review_M9Aecq": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/Whisk_7b0c6b404679298b15148f1f710e60b8dr.jpg",
+            "rating": 5,
+            "quote": "I use it before every heavy squat day. My mobility has improved drastically in just a month.",
+            "author": "Sarah J."
+          }
+        },
+        "review_MWnaJW": {
+          "type": "review",
+          "settings": {
+            "avatar": "shopify://shop_images/Whisk_50106bfd71396f698964732990715df9dr.jpg",
+            "rating": 5,
+            "quote": "Clinical grade power. It's exactly what my physical therapist recommended for my tight hamstrings.",
+            "author": "David R."
+          }
+        }
+      },
+      "block_order": [
+        "review_kMKraJ",
+        "review_M9Aecq",
+        "review_MWnaJW"
+      ],
+      "name": "Testimonials Grid",
+      "settings": {
+        "heading": "Real Athletes. Real Results."
+      }
+    },
+    "section_research_TjDdLU": {
+      "type": "section-research",
+      "blocks": {
+        "research_item_FB7npK": {
+          "type": "research_item",
+          "settings": {
+            "logo": "shopify://shop_images/Eurofins-Logo.svg",
+            "text": "<p>New study finds our devices are <strong>scientifically proven to enhance performance, reduce inflammation and improve muscle activation</strong> following exercise.</p>",
+            "link_text": "Learn more",
+            "link_url": ""
+          }
+        },
+        "research_item_GeDphA": {
+          "type": "research_item",
+          "settings": {
+            "logo": "shopify://shop_images/PRUVN-Logo.svg",
+            "text": "<p>New study finds our devices are <strong>scientifically proven to enhance performance, reduce inflammation and improve muscle activation</strong> following exercise.</p>",
+            "link_text": "Learn more",
+            "link_url": ""
+          }
+        },
+        "research_item_HC46yY": {
+          "type": "research_item",
+          "settings": {
+            "logo": "shopify://shop_images/Homepage-University-Icon.svg",
+            "text": "<p>New study finds our devices are <strong>scientifically proven to enhance performance, reduce inflammation and improve muscle activation</strong> following exercise.</p>",
+            "link_text": "Learn more",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "research_item_FB7npK",
+        "research_item_GeDphA",
+        "research_item_HC46yY"
+      ],
+      "name": "Research & Clinical",
+      "settings": {
+        "heading": "RecovrX's research"
+      }
+    },
+    "section_why_choose_us_bfGhkJ": {
+      "type": "section-why-choose-us",
+      "blocks": {
+        "feature_4xL3k4": {
+          "type": "feature",
+          "settings": {
+            "title": "Faster recovery",
+            "description": "Accelerate your downtime with clinically backed percussive therapy that flushes lactic acid instantly."
+          }
+        },
+        "feature_NjDCWk": {
+          "type": "feature",
+          "settings": {
+            "title": "Pain relief",
+            "description": "Target deep tissue knots and chronic soreness with precision-engineered amplitudes and scientifically proven attachments."
+          }
+        },
+        "feature_EBVEYB": {
+          "type": "feature",
+          "settings": {
+            "title": "Better performance",
+            "description": "Prime your muscles before the workout to increase mobility, range of motion, and explosive strength."
+          }
+        }
+      },
+      "block_order": [
+        "feature_4xL3k4",
+        "feature_NjDCWk",
+        "feature_EBVEYB"
+      ],
+      "name": "Why Choose Us",
+      "settings": {
+        "heading": "Why athletes choose us"
+      }
+    },
+    "section_newsletter_kHJKe3": {
+      "type": "section-newsletter",
+      "name": "Newsletter Form",
+      "settings": {
+        "heading": "Unlock 10% Off Your First Order",
+        "subtext": "Join the RecovrX community. Get exclusive access to product drops, recovery protocols, and VIP offers.",
+        "placeholder": "Enter your email address",
+        "btn_text": "Subscribe"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "section_hero_banner_pcB4K6",
+    "section_shop_by_concern_Yjcg6x",
+    "section_best_sellers_JmMdwC",
+    "section_trust_badges_KrRPWb",
+    "section_duo_features_KcBhNX",
+    "section_usp_stats_ACyMje",
+    "section_product_highlight_kaRnrJ",
+    "section_testimonials_8r9rmp",
+    "section_research_TjDdLU",
+    "section_why_choose_us_bfGhkJ",
+    "section_newsletter_kHJKe3"
   ]
 }

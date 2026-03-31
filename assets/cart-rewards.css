@@ -1,0 +1,295 @@
+/* RecovrX - Cart Rewards CSS */
+
+.cart-rewards {
+  padding: 16px 18px;
+  background: var(--color-surface, #242424);
+  border: 1px solid var(--color-border, #2A2A2A);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.cart-rewards::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-accent, #E3000F);
+}
+
+.cart-rewards__next-reward {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--color-secondary, #1E1E1E);
+  border: 1px solid var(--color-border, #2A2A2A);
+  border-radius: 4px;
+}
+
+.cart-rewards__next-reward-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary, #0A0A0A);
+  border: 2px solid var(--color-border, #2A2A2A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  color: var(--color-text-primary, #FFFFFF);
+}
+
+.cart-rewards__next-reward-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cart-rewards__next-reward-content {
+  flex: 1;
+}
+
+.cart-rewards__next-reward-label {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.cart-rewards__next-reward-progress {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-accent, #E3000F);
+}
+
+.cart-rewards__message {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--color-text-primary, #FFFFFF);
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cart-rewards__icon--product {
+  background: transparent !important;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cart-rewards__icon--product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cart-rewards__progress-container {
+  position: relative;
+}
+
+.cart-rewards__track {
+  height: 8px;
+  background: var(--color-primary-alt, #111111);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-border, #2A2A2A);
+}
+
+.cart-rewards__progress {
+  width: 0%;
+  height: 8px;
+  background: linear-gradient(90deg, var(--color-accent-hover, #B8000C) 0%, var(--color-accent, #E3000F) 100%);
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(227, 0, 15, 0.4);
+}
+
+.cart-rewards__milestones {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: -20px;
+  padding: 0 4px;
+}
+
+.cart-rewards__milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.cart-rewards__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-surface, #242424);
+  border: 2px solid var(--color-border, #2A2A2A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  color: var(--color-text-faint, #5A5A5A);
+}
+
+.cart-rewards__icon--image {
+  padding: 0;
+  border: 2px solid var(--color-border, #2A2A2A);
+  background: var(--color-surface, #242424);
+}
+
+.cart-rewards__product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-rewards__milestone.active .cart-rewards__icon {
+  background: var(--color-accent, #E3000F);
+  border-color: var(--color-accent-hover, #B8000C);
+  color: var(--color-text-primary, #FFFFFF);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(227, 0, 15, 0.3);
+}
+
+.cart-rewards__milestone.active .cart-rewards__icon--image {
+  background: var(--color-surface, #242424);
+  border-color: var(--color-accent, #E3000F);
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(227, 0, 15, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.cart-rewards__milestone.completed .cart-rewards__icon {
+  background: var(--color-success, #22C55E);
+  border-color: var(--color-success, #22C55E);
+  color: var(--color-primary, #0A0A0A);
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
+}
+
+.cart-rewards__milestone.completed .cart-rewards__icon--image {
+  border-color: var(--color-success, #22C55E);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.cart-rewards__label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  text-align: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--color-text-muted, #A0A0A0);
+  line-height: 1.3;
+  text-transform: uppercase;
+        letter-spacing: 0px;  max-width: 70px;
+}
+
+.cart-rewards__amount {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-faint, #5A5A5A);
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+
+.cart-rewards__milestone.active .cart-rewards__label,
+.cart-rewards__milestone.completed .cart-rewards__label {
+  color: var(--color-text-primary, #FFFFFF);
+}
+
+.cart-rewards__milestone.active .cart-rewards__amount {
+  color: var(--color-accent, #E3000F);
+}
+
+.cart-rewards__milestone.completed .cart-rewards__amount {
+  color: var(--color-success, #22C55E);
+}
+
+/* Media Queries remain identical for structure */
+@media (min-width: 640px) {
+  .cart-rewards {
+    padding: 18px 22px;
+  }
+  .cart-rewards__message {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .cart-rewards__track {
+    height: 10px;
+  }
+  .cart-rewards__milestones {
+    margin-top: -22px;
+  }
+  .cart-rewards__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .cart-rewards__milestone.completed .cart-rewards__icon:not(.cart-rewards__icon--image)::after {
+    font-size: 24px;
+  }
+  .cart-rewards__label {
+    font-size: 8px;
+    max-width: 80px;
+  }
+  .cart-rewards__amount {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 968px) {
+  .cart-rewards {
+    padding: 20px 26px;
+  }
+  .cart-rewards__message {
+    font-size: 15px;
+  }
+  .cart-rewards__track {
+    height: 12px;
+  }
+  .cart-rewards__milestones {
+    margin-top: -24px;
+  }
+  .cart-rewards__icon {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+  .cart-rewards__milestone.completed .cart-rewards__icon {
+    font-size: 24px;
+  }
+  .cart-rewards__milestone.completed .cart-rewards__icon:not(.cart-rewards__icon--image)::after {
+    font-size: 26px;
+  }
+  .cart-rewards__label {
+    font-size: 8px;
+    max-width: 90px;
+            letter-spacing: 0px;
+  }
+  .cart-rewards__amount {
+    font-size: 14px;
+  }
+}

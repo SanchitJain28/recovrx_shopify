@@ -1,0 +1,121 @@
+{{ 'section-policy.css' | asset_url | stylesheet_tag }}
+
+<section class="rx-policy rx-bg-primary section-reveal">
+  <div class="rx-container rx-policy__container">
+    <div class="rx-policy__header">
+      <h1 class="rx-policy__title">{{ section.settings.title }}</h1>
+      <p class="rx-policy__subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="rx-policy__content">
+      {% for block in section.blocks %}
+        <div class="rx-policy__block" {{ block.shopify_attributes }}>
+          <h2 class="rx-policy__block-title">{{ block.settings.heading }}</h2>
+          <div class="rx-policy__block-text">
+            {{ block.settings.content }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="rx-policy__footer">
+      <p>Need further assistance? <a href="/pages/contact" class="rx-link">Contact our support team</a>.</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shipping & Returns",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Clinical-grade policies for your performance gear."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "policy_section",
+      "name": "Policy Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Policy Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Enter your policy details here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping & Returns Policy",
+      "blocks": [
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "1. Processing & Shipping Timelines",
+            "content": "<p>At RecovrX, we know that when you're in recovery, every day counts. We aim to process and dispatch all orders within <strong>24 to 48 hours</strong> of receipt (excluding weekends and public holidays). Once your order is processed, standard delivery takes <strong>3-5 business days</strong> across India.</p><p>Please ensure all shipping details are correct at checkout. We are not responsible for delays caused by incorrect or incomplete addresses.</p>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "2. Shipping Rates",
+            "content": "<p>We provide transparent, no-fluff shipping rates to keep you focused on your performance:</p><ul><li><strong>Orders over ₹999:</strong> Free Standard Shipping.</li><li><strong>Orders under ₹999:</strong> A flat shipping rate of ₹99 will be applied at checkout.</li></ul>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "3. Order Tracking",
+            "content": "<p>Once your recovery gear has been dispatched, you will receive a shipping confirmation email containing your tracking number and a secure link. Please allow up to 24 hours for the tracking portal to update with your package's real-time location.</p>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "4. The 30-Day Performance Guarantee (Returns)",
+            "content": "<p>We stand behind the clinical efficacy of our equipment. If you are not completely satisfied with your purchase, you may return the item within <strong>30 days of delivery</strong> for a full refund or exchange.</p><p>To be eligible for a return, the following conditions must be met:</p><ul><li>The item must be in its original, unused condition.</li><li>All original packaging, accessories, and instruction manuals must be included.</li><li>Due to hygiene standards, wearable items such as the <strong>Compression Knee Sleeve</strong> can only be returned if unopened or deemed defective upon arrival.</li></ul>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "5. Warranty on Electronics",
+            "content": "<p>Your <strong>Percussion Massage Gun</strong> is an investment in your physical longevity. It comes backed by a <strong>1-Year Manufacturer’s Warranty</strong>. This warranty covers internal defects, battery malfunction, and mechanical failure under normal, intended use. It does not cover water damage, drops, or normal wear and tear of attachments.</p>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "6. How to Initiate a Return",
+            "content": "<p>To start a return or warranty claim, follow these steps:</p><ol><li>Email our clinical support team at <strong>support@recovrx.in</strong> with your Order Number and reason for return.</li><li>If approved, we will provide you with a Return Merchandise Authorization (RMA) number and the return shipping address.</li><li>Pack the items securely. We highly recommend using a trackable shipping service, as we cannot guarantee receipt of your returned item.</li></ol><p><em>Note: Customers are responsible for return shipping costs unless the item arrived damaged or defective.</em></p>"
+          }
+        },
+        {
+          "type": "policy_section",
+          "settings": {
+            "heading": "7. Refunds Processing",
+            "content": "<p>Once your return is received and inspected at our facility, we will notify you of the approval or rejection of your refund. Approved refunds will be processed automatically to your original method of payment within <strong>5-7 business days</strong>. Please note that it may take additional time for your bank or credit card company to post the refund.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

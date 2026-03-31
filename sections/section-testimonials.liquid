@@ -1,0 +1,152 @@
+{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-testimonials.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-testimonials" aria-labelledby="testimonials-heading-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="rx-testimonials__header">
+        <h2 id="testimonials-heading-{{ section.id }}" class="rx-testimonials__heading">
+          {{ section.settings.heading }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <div class="rx-testimonials__grid">
+      {%- for block in section.blocks -%}
+        <div class="rx-testimonials__card" {{ block.shopify_attributes }}>
+          <!-- Top Group (Stars + Quote) -->
+          <div class="rx-testimonials__card-top">
+            <!-- Star Rating -->
+            <div class="rx-testimonials__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+              {%- for i in (1..5) -%}
+                <svg
+                  class="rx-testimonials__star {% if i <= block.settings.rating %}is-filled{% endif %}"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              {%- endfor -%}
+            </div>
+
+            <!-- Review Quote -->
+            <blockquote class="rx-testimonials__quote">"{{ block.settings.quote }}"</blockquote>
+          </div>
+
+          <!-- Author Profile (Avatar + Info) -->
+          <div class="rx-testimonials__author-profile">
+            <!-- Avatar -->
+            {%- if block.settings.avatar != blank -%}
+              {{
+                block.settings.avatar
+                | image_url: width: 100
+                | image_tag: class: 'rx-testimonials__avatar', loading: 'lazy', alt: block.settings.author
+              }}
+            {%- else -%}
+              <div class="rx-testimonials__avatar-placeholder">
+                {{ block.settings.author | slice: 0, 1 | upcase }}
+              </div>
+            {%- endif -%}
+
+            <!-- Author Info -->
+            <div class="rx-testimonials__author-wrap">
+              <span class="rx-testimonials__author">{{ block.settings.author }}</span>
+              <span class="rx-testimonials__verified">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section-testimonials",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real Athletes. Real Results."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Author Avatar Image"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Text",
+          "default": "Game changer for my recovery routine. The amplitude on this device is unmatched compared to cheap knockoffs."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Marcus T."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid",
+      "blocks": [
+        { "type": "review", "settings": { "author": "Marcus T." } },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Sarah J.",
+            "quote": "I use it before every heavy squat day. My mobility has improved drastically in just a month."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "David R.",
+            "quote": "Clinical grade power. It's exactly what my physical therapist recommended for my tight hamstrings."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

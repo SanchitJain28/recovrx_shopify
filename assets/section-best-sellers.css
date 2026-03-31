@@ -1,0 +1,93 @@
+/* LIGHT MODE INVERSION: Overriding tokens inside this section only */
+.rx-bestsellers {
+  --color-primary: #FFFFFF;
+  --color-primary-alt: #F8F8F8;
+  --color-secondary: #F4F4F4;
+  --color-surface: #F9F9F9;
+  --color-text-primary: #0A0A0A;
+  --color-text-muted: #5A5A5A;
+  --color-border: #E5E5E5;
+
+  background-color: var(--color-primary);
+  /* Compact Padding */
+  padding: clamp(24px, 4vw, 40px) 16px; 
+  overflow: hidden;
+}
+
+.rx-bestsellers .page-width {
+  margin: 0 auto;
+}
+
+.rx-bestsellers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px; /* Super tight margin */
+}
+
+.rx-bestsellers__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Nav Buttons */
+.rx-bestsellers__nav {
+  display: flex;
+  gap: 8px; /* Tight gap */
+}
+
+.rx-bestsellers__btn {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px; /* Clinical sharp edges */
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+.rx-bestsellers__btn:hover {
+  background: var(--color-text-primary);
+  color: var(--color-primary);
+  border-color: var(--color-text-primary);
+}
+
+/* Slider Track Layout */
+.rx-bestsellers__slider {
+  width: 100%;
+  overflow: hidden; /* Hide products outside viewport */
+}
+
+.rx-bestsellers__track {
+  display: flex;
+  gap: 12px; /* Super compact grid gap */
+  width: 100%;
+  /* Fix layout flashing before GSAP takes over */
+  flex-wrap: nowrap;
+}
+
+.rx-bestsellers__slide {
+  flex: 0 0 calc(50% - 6px); /* Mobile: 2 items */
+  min-width: 0; /* Prevents flexbox text overflow issues */
+}
+
+@media (min-width: 768px) {
+  .rx-bestsellers__slide {
+    flex: 0 0 calc(33.333% - 8px); /* Tablet: 3 items */
+  }
+}
+
+@media (min-width: 1024px) {
+  .rx-bestsellers__slide {
+    flex: 0 0 calc(25% - 9px); /* Desktop: 4 items, tight */
+  }
+}

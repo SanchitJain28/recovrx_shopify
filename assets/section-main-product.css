@@ -62,14 +62,14 @@ product-info {
 
 @media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 65%;
-    width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 50%;
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
     padding: 0 0 0 4rem;
-    max-width: 35%;
-    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 50%;
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media).product--right .product__info-wrapper {
@@ -217,16 +217,62 @@ product-info {
 
 /* Product info */
 
-.product__info-container > * + * {
-  margin: 1.5rem 0;
-}
 
 .product__info-container iframe {
   max-width: 100%;
 }
 
+/* ==========================================================================
+   RecovrX - Product Description & Container Spacing
+   ========================================================================== */
+
+/* 1. Reduce the bulky default Dawn spacing */
 .product__info-container .product-form,
-.product__info-container .product__description,
+.product__info-container .icon-with-text {
+  margin: 1.5rem 0; /* Reduced from 2.5rem */
+}
+
+/* 2. Style the description text */
+.product__info-container .product__description {
+      font-family: var(--font-body, "Inter", sans-serif);
+    font-size: 1rem;
+    color: #1e1e1e;
+    line-height: 1.3;
+    /* margin: 1.25rem 0; */
+    word-break: break-word;
+    margin-bottom: 1.2rem;
+}
+
+/* Handle paragraphs cleanly */
+.product__info-container .product__description p {
+  margin: 0 0 0.75rem 0;
+}
+
+.product__info-container .product__description p:last-child {
+  margin-bottom: 0;
+  letter-spacing: 0px;
+}
+
+/* Style unordered/ordered lists for features */
+.product__info-container .product__description ul,
+.product__info-container .product__description ol {
+  margin: 0 0 0.75rem 0;
+  padding-left: 1.25rem;
+}
+
+.product__info-container .product__description li {
+  margin-bottom: 0.25rem;
+}
+
+/* Bold text inside description */
+.product__info-container .product__description strong,
+.product__info-container .product__description b {
+  font-weight: 600;
+  color: #0A0A0A; /* Use primary text color for emphasis */
+}
+
+.product__info-container .product-form,
+.product__info-container 
 .product__info-container .icon-with-text {
   margin: 2.5rem 0;
 }
@@ -245,25 +291,53 @@ a.product__text {
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   RecovrX - Product Title & Meta (PDP)
+   ========================================================================== */
+
+/* ==========================================================================
+   RecovrX - Product Title & Meta (PDP) - Light Theme
+   ========================================================================== */
+
 .product__title {
   word-break: break-word;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .product__title > * {
   margin: 0;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: clamp(2.575rem, 2vw + 1rem, 1.75rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0A0A0A;
+  letter-spacing: -0.01em;
 }
 
 .product__title > a {
   display: none;
 }
 
-.product__title + .product__text.caption-with-letter-spacing {
-  margin-top: -1.5rem;
+
+.product__text.caption-with-letter-spacing {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500; 
+  line-height: 1.5;
+  color: #5A5A5A; /* Updated: Muted text (vendor, SKU) */
+  text-transform: uppercase;
+  letter-spacing: 0.12em; /* Wide tracking for clinical, technical look */
+  display: block;
 }
 
+/* Smooth spacing adjustment if the caption (vendor) is placed ABOVE the title */
 .product__text.caption-with-letter-spacing + .product__title {
-  margin-top: 0;
+  margin-top: 0.5rem;
+}
+
+/* Smooth spacing adjustment if the caption (vendor) is placed BELOW the title */
+.product__title + .product__text.caption-with-letter-spacing {
+  margin-top: -0.75rem; /* Pulls the caption up slightly to group them visually */
 }
 
 .product__accordion .accordion__content {
@@ -1490,5 +1564,339 @@ a.product__text {
 
   .recipient-form > input[type='checkbox']:checked + label .icon-checkmark {
     border: none;
+  }
+}
+
+
+.rx-badge {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: none; /* Hidden by default */
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.rx-badge--sale {
+  background-color: #E3000F;
+  color: #FFFFFF;
+}
+
+.rx-badge--sold-out {
+  background-color: #5A5A5A;
+  color: #FFFFFF;
+}
+
+/* Logic: Show Sale ONLY if on sale and NOT sold out */
+.price--on-sale:not(.price--sold-out) .rx-badge--sale {
+  display: inline-block;
+}
+
+/* Logic: Show Sold Out if sold out (overrides sale) */
+.price--sold-out .rx-badge--sold-out {
+  display: inline-block;
+}
+
+/* ==========================================================================
+   RecovrX - Product Tags Block
+   ========================================================================== */
+
+.rx-product-tags {
+  margin-bottom: 0.25rem;
+}
+
+.rx-product-tags__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.rx-product-tags__item {
+      display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    padding: .475rem .85rem;
+    background-color: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    border-radius: 4px;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: .9125rem;
+    font-weight: 500;
+    line-height: 1;
+    transition: opacity .2s ease;
+}
+
+.rx-product-tags__item:hover {
+  opacity: 0.8;
+}
+
+/* Icon Sizing */
+.rx-product-tags__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rx-product-tags__icon svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  color: currentColor; /* Inherits text color */
+}
+
+/* ==========================================================================
+   RecovrX - Product Review Block
+   ========================================================================== */
+
+.rx-review-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem; /* Compact spacing */
+}
+
+.rx-review-block__stars {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem; /* Very tight spacing between stars */
+  color: #0A0A0A; /* Deep Black for a premium, clinical look */
+}
+
+.rx-star {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem;
+}
+
+.rx-review-block__text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  color: #5A5A5A; /* Muted text */
+  text-decoration: none;
+  line-height: 1;
+  padding-top: 0.125rem; /* Optical alignment with stars */
+  transition: color 0.2s ease;
+}
+
+.rx-review-block__text:hover {
+  color: #0A0A0A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   RecovrX - Custom Variant Picker & Form
+   ========================================================================== */
+
+/* Screen Reader Only (Keeps accessibility for hidden inputs) */
+.rx-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.rx-variant-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+.rx-variant-group__label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.875rem; /* 14px */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.rx-variant-group__name {
+  font-weight: 600;
+  color: #0A0A0A;
+}
+
+.rx-variant-group__value {
+  font-weight: 400;
+  color: #5A5A5A;
+  margin-left: 0.25rem;
+}
+
+.rx-variant-group__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Compact spacing */
+}
+
+/* Base Pill Style */
+.rx-variant-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #5A5A5A;
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.rx-variant-pill:hover {
+  border-color: #0A0A0A;
+}
+
+/* Selected State */
+.rx-sr-only:checked + .rx-variant-pill {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  border-color: #0A0A0A;
+}
+
+/* Sold Out State */
+.rx-variant-pill--sold-out {
+  opacity: 0.5;
+  text-decoration: line-through;
+  background-color: #F5F5F5;
+}
+
+/* Color Swatch Specifics */
+.rx-variant-pill--color {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--swatch-color, #E0E0E0);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #E0E0E0;
+}
+
+.rx-sr-only:checked + .rx-variant-pill--color {
+  box-shadow: 0 0 0 2px #0A0A0A;
+}
+
+/* ==========================================================================
+   RecovrX - Add To Cart Button & Form Actions
+   ========================================================================== */
+
+.rx-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Space between ATC and Dynamic Checkout */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  min-height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.rx-btn--full {
+  width: 100%;
+}
+
+.rx-btn--primary {
+  background-color: #E3000F; /* Electric Red Accent */
+  color: #FFFFFF;
+}
+
+.rx-btn--primary:hover {
+  background-color: #B8000C; /* Deep Red Accent Hover */
+}
+
+.rx-btn:disabled,
+.rx-btn[aria-disabled="true"] {
+  background-color: #E0E0E0;
+  color: #A0A0A0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Style Dawn's dynamic checkout buttons to match our compact theme */
+.rx-dynamic-checkout .shopify-payment-button__button {
+  border-radius: 4px !important;
+  font-family: var(--font-body, 'Inter', sans-serif) !important;
+  min-height: 50px !important;
+}
+
+/* ==========================================================================
+   RecovrX - Trust Bar
+   ========================================================================== */
+
+.rx-trust-bar {
+      display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: 1rem 1rem;
+    margin-bottom: 1.5rem;
+    /* border-top: 1px solid #E0E0E0; */
+    /* border-bottom: 1px solid #E0E0E0; */
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+}
+
+.rx-trust-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: 0.375rem;
+}
+
+.rx-trust-bar__icon {
+      width: 2.55rem;
+    height: 2.55rem;
+    color: #1e1e1e;
+}
+
+.rx-trust-bar__text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1.05rem; /* 12px */
+  font-weight: 500;
+  line-height: 1.3;
+  color: #5A5A5A; /* Muted text */
+}
+
+/* Mobile wrapping if space gets too tight */
+@media screen and (max-width: 400px) {
+  .rx-trust-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rx-trust-bar__item {
+    margin-bottom: 0.5rem;
   }
 }

@@ -1,0 +1,155 @@
+/* ==========================================================================
+   RecovrX - Custom Variant Picker & Form
+   ========================================================================== */
+
+/* Screen Reader Only (Keeps accessibility for hidden inputs) */
+.rx-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.rx-variant-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+.rx-variant-group__label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.875rem; /* 14px */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.rx-variant-group__name {
+  font-weight: 600;
+  color: #0A0A0A;
+}
+
+.rx-variant-group__value {
+  font-weight: 400;
+  color: #5A5A5A;
+  margin-left: 0.25rem;
+}
+
+.rx-variant-group__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Compact spacing */
+}
+
+/* Base Pill Style */
+.rx-variant-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #5A5A5A;
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.rx-variant-pill:hover {
+  border-color: #0A0A0A;
+}
+
+/* Selected State */
+.rx-sr-only:checked + .rx-variant-pill {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  border-color: #0A0A0A;
+}
+
+/* Sold Out State */
+.rx-variant-pill--sold-out {
+  opacity: 0.5;
+  text-decoration: line-through;
+  background-color: #F5F5F5;
+}
+
+/* Color Swatch Specifics */
+.rx-variant-pill--color {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--swatch-color, #E0E0E0);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #E0E0E0;
+}
+
+.rx-sr-only:checked + .rx-variant-pill--color {
+  box-shadow: 0 0 0 2px #0A0A0A;
+}
+
+/* ==========================================================================
+   RecovrX - Add To Cart Button & Form Actions
+   ========================================================================== */
+
+.rx-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Space between ATC and Dynamic Checkout */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  min-height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.rx-btn--full {
+  width: 100%;
+}
+
+.rx-btn--primary {
+  background-color: #E3000F; /* Electric Red Accent */
+  color: #FFFFFF;
+}
+
+.rx-btn--primary:hover {
+  background-color: #B8000C; /* Deep Red Accent Hover */
+}
+
+.rx-btn:disabled,
+.rx-btn[aria-disabled="true"] {
+  background-color: #E0E0E0;
+  color: #A0A0A0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Style Dawn's dynamic checkout buttons to match our compact theme */
+.rx-dynamic-checkout .shopify-payment-button__button {
+  border-radius: 4px !important;
+  font-family: var(--font-body, 'Inter', sans-serif) !important;
+  min-height: 50px !important;
+}

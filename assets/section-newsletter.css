@@ -1,0 +1,142 @@
+.rx-newsletter {
+  background-color: var(--color-secondary, #1E1E1E);
+  padding: clamp(40px, 5vw, 60px) 16px; /* Compact structural padding */
+  border-top: 1px solid var(--color-border, #2A2A2A);
+  overflow: hidden;
+}
+
+.rx-newsletter__container {
+  max-width: 800px; /* Constrained width for optimal reading and form length */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Content */
+.rx-newsletter__content {
+  margin-bottom: 24px; /* Tight gap before form */
+}
+
+.rx-newsletter__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(40px, 5vw, 56px);
+  font-weight: 400;
+  color: var(--color-text-primary, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+}
+
+.rx-newsletter__subtext {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--color-text-muted, #A0A0A0);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* Form Layout */
+.rx-newsletter__form-wrapper {
+  width: 100%;
+}
+
+.rx-newsletter__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Tight mobile gap */
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .rx-newsletter__input-group {
+    flex-direction: row;
+    gap: 8px; /* Snug desktop gap */
+  }
+}
+
+/* Input Styling */
+.rx-newsletter__input {
+  flex-grow: 1;
+  background-color: var(--color-primary-alt, #111111);
+  border: 1px solid var(--color-border, #2A2A2A);
+  color: var(--color-text-primary, #FFFFFF);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 16px; /* Prevents iOS zoom */
+  padding: 14px 20px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.rx-newsletter__input::placeholder {
+  color: var(--color-text-faint, #5A5A5A);
+}
+
+.rx-newsletter__input:focus {
+  border-color: var(--color-text-primary, #FFFFFF); /* High contrast clinical focus state */
+  box-shadow: 0 0 0 1px var(--color-text-primary, #FFFFFF);
+}
+
+/* Button Styling */
+.rx-newsletter__btn {
+  background-color: var(--color-accent, #E3000F); /* Electric Red */
+  color: var(--color-text-primary, #FFFFFF);
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+  line-height: 1;
+}
+
+.rx-newsletter__btn:hover {
+  background-color: var(--color-accent-hover, #B8000C);
+}
+
+/* Messages (Success / Error) */
+.rx-newsletter__message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.rx-newsletter__message svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.rx-newsletter__message--success {
+  color: var(--color-success, #22C55E);
+}
+
+.rx-newsletter__message--error {
+  color: var(--color-accent, #E3000F);
+}
+
+/* Utility to hide labels for screen readers without breaking layout */
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}

@@ -1,0 +1,157 @@
+.rx-about {
+  background-color: var(--color-primary);
+  padding: 100px 20px;
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+.rx-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.rx-about__hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+}
+
+.rx-about__title {
+  font-family: var(--font-heading);
+  font-size: clamp(60px, 8vw, 96px); /* Huge Bebas Neue */
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.rx-about__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Split Story Section */
+.rx-about__story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.rx-about__story-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--color-secondary);
+}
+
+.rx-about__story-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rx-about__placeholder {
+  width: 100%;
+  height: 100%;
+  fill: var(--color-text-faint);
+  background-color: var(--color-surface);
+}
+
+.rx-about__story-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.rx-about__story-text {
+      font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
+.rx-about__story-text p {
+  margin-bottom: 20px;
+}
+
+/* Core Standards Section */
+.rx-about__standards {
+  border-top: 1px solid var(--color-border);
+  padding-top: 80px;
+}
+
+.rx-about__standards-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.rx-about__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.rx-about__card {
+  background-color: var(--color-primary-alt);
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.rx-about__card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent);
+}
+
+.rx-about__card-number {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.rx-about__card-title {
+  font-family: var(--font-subhead);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.rx-about__card-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .rx-about__story {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .rx-about__grid {
+    grid-template-columns: 1fr;
+  }
+}

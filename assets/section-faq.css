@@ -1,0 +1,95 @@
+/* ==========================================================================
+   RecovrX - FAQ Section
+   ========================================================================== */
+
+.rx-faq {
+  padding: 5rem 1.5rem;
+  color: #FFFFFF; /* Pure White */
+}
+
+.rx-faq__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rx-faq__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.rx-faq__title {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+}
+
+.rx-faq__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  color: #A0A0A0; /* Text Muted */
+  margin: 0;
+}
+
+.rx-faq__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.rx-faq__item {
+  border-bottom: 1px solid #2A2A2A; /* Dark Border */
+}
+
+.rx-faq__question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 1.25rem; /* 20px */
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.rx-faq__question:hover {
+  color: #E3000F; /* Electric Red Accent */
+}
+
+.rx-faq__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-left: 1.5rem;
+  color: #A0A0A0;
+}
+
+.rx-faq__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.rx-faq__answer-wrapper {
+  height: 0;
+  overflow: hidden;
+}
+
+.rx-faq__answer {
+  padding-bottom: 1.5rem;
+  color: #A0A0A0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.rx-faq__answer p {
+  margin: 0;
+}

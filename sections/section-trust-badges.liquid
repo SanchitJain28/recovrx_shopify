@@ -1,0 +1,114 @@
+{{ 'section-trust-badges.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-trust-badges.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-trust" aria-label="Store Trust Guarantees">
+  <div class="page-width">
+    <div class="rx-trust__grid">
+      {%- for block in section.blocks -%}
+        <div class="rx-trust__item" {{ block.shopify_attributes }}>
+          <div class="rx-trust__icon-wrapper">
+            {%- if block.settings.icon != blank -%}
+              {{
+                block.settings.icon
+                | image_url: width: 100
+                | image_tag: class: 'rx-trust__icon', loading: 'lazy', alt: block.settings.title
+                | escape
+              }}
+            {%- else -%}
+              <!-- Fallback Shield Icon if no image uploaded -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="rx-trust__icon rx-trust__icon--svg"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            {%- endif -%}
+          </div>
+
+          <div class="rx-trust__content">
+            <h3 class="rx-trust__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.subtext != blank -%}
+              <p class="rx-trust__desc">{{ block.settings.subtext }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "section-trust-badges",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Custom Icon Image",
+          "info": "Upload a square PNG or SVG. Recommended size: 100x100px."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Fast Shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Free over ₹999"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges Row",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "title": "Fast Shipping",
+            "subtext": "Free over ₹999"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "30-Day Returns",
+            "subtext": "Risk-free guarantee"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "1-Year Warranty",
+            "subtext": "Clinical grade quality"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "Secure Checkout",
+            "subtext": "256-bit encryption"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

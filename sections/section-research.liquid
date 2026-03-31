@@ -1,0 +1,106 @@
+{{ 'section-research.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-research.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-research" aria-labelledby="research-heading-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="research-heading-{{ section.id }}" class="rx-research__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="rx-research__container">
+      <div class="rx-research__grid">
+        {%- for block in section.blocks -%}
+          <div class="rx-research__column" {{ block.shopify_attributes }}>
+            <!-- Logo / Icon -->
+            <div class="rx-research__logo-wrapper">
+              {%- if block.settings.logo != blank -%}
+                {{
+                  block.settings.logo
+                  | image_url: width: 300
+                  | image_tag:
+                    class: 'rx-research__logo',
+                    loading: 'lazy',
+                    widths: '150, 300',
+                    alt: block.settings.logo.alt
+                  | default: 'Research Partner Logo'
+                }}
+              {%- else -%}
+                <div class="rx-research__logo-placeholder">Logo</div>
+              {%- endif -%}
+            </div>
+
+            <!-- Rich Text (Handles grey normal text and black bold text) -->
+            {%- if block.settings.text != blank -%}
+              <div class="rx-research__text">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+
+            <!-- Learn More Link -->
+            {%- if block.settings.link_text != blank and block.settings.link_url != blank -%}
+              <a href="{{ block.settings.link_url }}" class="rx-research__link">
+                {{ block.settings.link_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Research & Clinical",
+  "tag": "section",
+  "class": "section-research",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "RecovrX's research"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "research_item",
+      "name": "Research Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Partner Logo"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Research Text",
+          "default": "<p>New study finds our devices are <strong>scientifically proven to enhance performance, reduce inflammation and improve muscle activation</strong> following exercise.</p>",
+          "info": "Use the bold tool to highlight key findings in black, while the rest stays grey."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Research & Clinical",
+      "blocks": [{ "type": "research_item" }, { "type": "research_item" }, { "type": "research_item" }]
+    }
+  ]
+}
+{% endschema %}

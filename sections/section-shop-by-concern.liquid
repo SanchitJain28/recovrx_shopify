@@ -1,0 +1,115 @@
+{{ 'section-shop-by-concern.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-shop-by-concern.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-concern" aria-labelledby="concern-heading-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="concern-heading-{{ section.id }}" class="rx-concern__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="rx-concern__grid">
+      {%- for block in section.blocks -%}
+        <a
+          href="{{ block.settings.link | default: '#' }}"
+          class="rx-concern__card"
+          {{ block.shopify_attributes }}
+          aria-label="Shop for {{ block.settings.title | escape }}"
+        >
+          <div class="rx-concern__image-wrapper">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 600
+                | image_tag:
+                  class: 'rx-concern__image',
+                  loading: 'lazy',
+                  widths: '300, 500, 600',
+                  alt: block.settings.title
+                | escape
+              }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'rx-concern__image placeholder-svg' }}
+            {%- endif -%}
+            <div class="rx-concern__overlay"></div>
+          </div>
+
+          <div class="rx-concern__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="rx-concern__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            <span class="rx-concern__cta">
+              Shop Now
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Concern",
+  "tag": "section",
+  "class": "section-shop-by-concern",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Shop by Concern"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "concern",
+      "name": "Concern Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Concern Title",
+          "default": "Muscle Pain"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Concern",
+      "blocks": [
+        { "type": "concern", "settings": { "title": "Muscle Pain" } },
+        { "type": "concern", "settings": { "title": "Mobility" } },
+        { "type": "concern", "settings": { "title": "Recovery" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

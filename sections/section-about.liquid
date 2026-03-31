@@ -1,0 +1,134 @@
+{{ 'section-about.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-about.js' | asset_url }}" defer></script>
+
+<section class="rx-about rx-bg-primary section-reveal">
+  <div class="rx-container">
+    <!-- Hero / Intro -->
+    <div class="rx-about__hero">
+      <h1 class="rx-about__title">{{ section.settings.title }}</h1>
+      <p class="rx-about__subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <!-- Split Story Section -->
+    <div class="rx-about__story">
+      <div class="rx-about__story-image-wrap">
+        {% if section.settings.story_image != blank %}
+          <img
+            src="{{ section.settings.story_image | image_url: width: 800 }}"
+            alt="RecovrX Athlete Recovery"
+            class="rx-about__story-image"
+            loading="lazy"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'rx-about__placeholder' }}
+        {% endif %}
+      </div>
+      <div class="rx-about__story-content">
+        <h2 class="rx-about__story-heading">{{ section.settings.story_heading }}</h2>
+        <div class="rx-about__story-text">
+          {{ section.settings.story_text }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Standards Grid -->
+    <div class="rx-about__standards">
+      <h2 class="rx-about__standards-title">Our Clinical Standards</h2>
+      <div class="rx-about__grid">
+        {% for block in section.blocks %}
+          <div class="rx-about__card" {{ block.shopify_attributes }}>
+            <div class="rx-about__card-number">0{{ forloop.index }}</div>
+            <h3 class="rx-about__card-title">{{ block.settings.title }}</h3>
+            <p class="rx-about__card-text">{{ block.settings.text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Title",
+      "default": "BEYOND RECOVERY."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Hero Subtitle",
+      "default": "We engineer clinical-grade performance tools for those who refuse to compromise on their potential."
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Brand Story Image"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Story Heading",
+      "default": "Built for the relentless."
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Story Text",
+      "default": "<p>Recovery is not a luxury; it is a biological necessity. At RecovrX, we recognized a gap between professional clinical therapy and the everyday athlete. Our mission is to bridge that gap by providing gym-goers, runners, and high-performance individuals with the same caliber of tools used by elite sports physiotherapists.</p><p>Every percussive gun, compression sleeve, and mobility tool we offer is rigorously tested to accelerate muscle repair, increase blood flow, and eliminate downtime.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "standard",
+      "name": "Core Standard",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Standard Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Describe the core standard or value here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Page",
+      "blocks": [
+        {
+          "type": "standard",
+          "settings": {
+            "title": "Clinical Efficacy",
+            "text": "Backed by sports science, our tools are engineered to penetrate deep muscle tissue, flush lactic acid, and deliver measurable physiological results."
+          }
+        },
+        {
+          "type": "standard",
+          "settings": {
+            "title": "Athlete-Centric",
+            "text": "Designed with input from professional trainers. From ergonomic grips to calibrated stall forces, every detail serves your performance."
+          }
+        },
+        {
+          "type": "standard",
+          "settings": {
+            "title": "Uncompromising Quality",
+            "text": "We use premium, high-torque brushless motors and industrial-grade materials to ensure your gear survives the toughest training regimens."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,153 @@
+{{ 'section-product-highlight.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-product-highlight.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-highlight" aria-labelledby="highlight-heading-{{ section.id }}">
+  <div class="page-width">
+    <div class="rx-highlight__grid {% if section.settings.image_position == 'right' %}rx-highlight__grid--reverse{% endif %}">
+      <!-- Media Column -->
+      <div class="rx-highlight__media">
+        <div class="rx-highlight__image-wrapper">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'rx-highlight__image',
+                loading: 'lazy',
+                widths: '600, 800, 1000, 1200',
+                alt: section.settings.heading
+              | escape
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'rx-highlight__image placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Content Column -->
+      <div class="rx-highlight__content">
+        {%- if section.settings.subheading != blank -%}
+          <span class="rx-highlight__subheading">{{ section.settings.subheading }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 id="highlight-heading-{{ section.id }}" class="rx-highlight__heading">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <p class="rx-highlight__text">{{ section.settings.text }}</p>
+        {%- endif -%}
+
+        <!-- Feature List Blocks -->
+        {%- if section.blocks.size > 0 -%}
+          <ul class="rx-highlight__features" role="list">
+            {%- for block in section.blocks -%}
+              <li class="rx-highlight__feature" {{ block.shopify_attributes }}>
+                <svg
+                  class="rx-highlight__feature-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{{ block.settings.feature_text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if section.settings.btn_text != blank and section.settings.btn_link != blank -%}
+          <a href="{{ section.settings.btn_link }}" class="rx-btn rx-highlight__btn">
+            {{ section.settings.btn_text }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Highlight",
+  "tag": "section",
+  "class": "section-product-highlight",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product Image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Deep Muscle Treatment"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Theragun PRO Plus"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description Text",
+      "default": "Designed for professionals. The ultimate smart percussive therapy device to accelerate recovery, reduce pain, and improve mobility."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop PRO Plus"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "16mm amplitude for deep tissue relief"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Highlight",
+      "blocks": [
+        { "type": "feature", "settings": { "feature_text": "16mm amplitude for deep tissue relief" } },
+        { "type": "feature", "settings": { "feature_text": "QuietForce Technology™" } },
+        { "type": "feature", "settings": { "feature_text": "300-minute battery life" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

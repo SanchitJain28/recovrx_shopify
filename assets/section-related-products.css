@@ -1,7 +1,10 @@
 .related-products {
   display: block;
+      max-width: 1000px;
 }
 
 .related-products__heading {
-  margin: 0 0 3rem;
+     /* margin: 0 0 3rem; */
+    letter-spacing: -1px;
+    font-size: 2rem;
 }

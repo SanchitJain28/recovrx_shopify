@@ -1,0 +1,143 @@
+{{ 'section-best-sellers.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-best-sellers.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign collection = collections[section.settings.collection]
+  assign product_limit = 8
+-%}
+
+<section class="rx-bestsellers" aria-labelledby="bestsellers-heading-{{ section.id }}">
+  <div class="page-width">
+    <!-- Compact Header with Navigation -->
+    <div class="rx-bestsellers__header">
+      <h2 id="bestsellers-heading-{{ section.id }}" class="rx-bestsellers__heading">
+        {{ section.settings.heading }}
+      </h2>
+
+      <div class="rx-bestsellers__nav">
+        <button class="rx-bestsellers__btn rx-prev" aria-label="Previous products">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="rx-bestsellers__btn rx-next" aria-label="Next products">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- GSAP Infinite Slider Track -->
+    <div class="rx-bestsellers__slider">
+      <div class="rx-bestsellers__track">
+        {%- if collection != blank and collection.products_count > 0 -%}
+          {%- for product in collection.products limit: product_limit -%}
+            <div class="rx-bestsellers__slide">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                lazy_load: true,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: false,
+                section_id: section.id,
+                quick_add: section.settings.quick_add
+              %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Placeholder loop if collection is empty -->
+          {%- for i in (1..6) -%}
+            <div class="rx-bestsellers__slide">
+              {% render 'card-product' %}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best Sellers Carousel",
+  "tag": "section",
+  "class": "section-best-sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Select the Best Selling collection. Will pull up to 8 products."
+    },
+    {
+      "type": "header",
+      "content": "Product Card Settings"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show product rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "quick_add",
+      "default": true,
+      "label": "Enable quick add"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers Carousel",
+      "settings": {
+        "collection": "best-selling"
+      }
+    }
+  ]
+}
+{% endschema %}

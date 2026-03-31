@@ -1,0 +1,133 @@
+{{ 'section-faq-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-faq-page.js' | asset_url }}" defer></script>
+
+<section class="rx-faq rx-bg-primary section-reveal">
+  <div class="rx-container">
+    <h1 class="rx-faq__title">{{ section.settings.title }}</h1>
+
+    <div class="rx-faq__accordion-group">
+      {% for block in section.blocks %}
+        <div class="rx-faq__item" {{ block.shopify_attributes }}>
+          <button class="rx-faq__trigger" aria-expanded="false" aria-controls="faq-content-{{ block.id }}">
+            <span class="rx-faq__question">{{ block.settings.question }}</span>
+            <span class="rx-faq__icon">+</span>
+          </button>
+          <div class="rx-faq__content" id="faq-content-{{ block.id }}">
+            <div class="rx-faq__answer">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How long does shipping take?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Standard shipping takes 3-5 business days.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What are your shipping times and costs?",
+            "answer": "<p>We offer <strong>Free Shipping on all orders over ₹999</strong>. For orders under ₹999, standard shipping rates apply. Delivery typically takes 3-5 business days across India. All orders are processed and dispatched within 24 hours.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your 30-Day Return Policy?",
+            "answer": "<p>We stand by the clinical quality of our gear. If you aren't completely satisfied with your performance results, you can return your items within 30 days of delivery for a full refund. The items must be in their original condition and packaging.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are RecovrX products scientifically tested?",
+            "answer": "<p>Yes. All our recovery tools, including our Percussion Massage Gun and Compression Sleeves, are designed with input from physical therapists and sports scientists. We prioritize clinical-grade efficacy and durability for high-performance athletes.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does the Percussion Massage Gun come with a warranty?",
+            "answer": "<p>Absolutely. Our Best-Selling Percussion Massage Gun includes a standard <strong>1-Year Manufacturer’s Warranty</strong> covering any defects in materials or workmanship. Your investment in your recovery is protected.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Which Massage Gun attachment should I use?",
+            "answer": "<p>Your device includes a clinical guide. As a rule of thumb: the <strong>Round Head</strong> is for large muscle groups (quads, glutes), the <strong>Bullet Head</strong> targets deep tissue and trigger points, the <strong>Flat Head</strong> is for dense muscles, and the <strong>Fork Head</strong> is designed for the spine and Achilles.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use the recovery tools?",
+            "answer": "<p>For optimal results, we recommend using the massage gun or foam roller for 2-3 minutes per targeted muscle group, up to twice a day. They are highly effective for both pre-workout muscle activation and post-workout lactic acid release.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I prepare the Hot & Cold Therapy Pack?",
+            "answer": "<p><strong>For Cold Therapy:</strong> Store the pack in the freezer for at least 2 hours before use to reduce inflammation. <strong>For Heat Therapy:</strong> Microwave in 15-second intervals until the desired temperature is reached to promote blood flow. Always use a protective cloth layer against your skin.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your gear ships, you will receive an email containing a tracking number and a secure link. You can use this link to monitor your shipment's progress in real-time until it reaches your door.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer bundle discounts?",
+            "answer": "<p>Yes! We highly recommend pairing tools for full-body recovery. If you add our <strong>Bundle Picks</strong> (like combining the Resistance Bands Set with our Foam Roller) to your cart, bundle discounts will automatically apply at checkout.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept all major credit and debit cards, UPI, Net Banking, and select mobile wallets. Our checkout process is fully encrypted and secure to ensure your data is protected.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

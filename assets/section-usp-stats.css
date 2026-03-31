@@ -1,0 +1,83 @@
+.rx-stats {
+  background-color: var(--color-primary-alt, #111111);
+  padding: clamp(40px, 5vw, 60px) 20px; /* Clean, compact padding without being cramped */
+  border-top: 1px solid var(--color-border, #2A2A2A);
+  border-bottom: 1px solid var(--color-border, #2A2A2A);
+  overflow: hidden;
+}
+
+.rx-stats .page-width {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.rx-stats__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .rx-stats__grid {
+    flex-direction: row;
+    justify-content: space-around; /* Distributes evenly */
+    gap: 24px;
+  }
+}
+
+.rx-stats__item {
+  /* REMOVED opacity: 0 and transform: translateY */
+  /* This guarantees visibility even if JS fails */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+/* Subtle red tech-accent line above each stat */
+.rx-stats__accent {
+  width: 32px;
+  height: 3px;
+  background-color: var(--color-accent, #E3000F);
+  margin-bottom: 12px;
+}
+
+/* The Data Wrapper */
+.rx-stats__data {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--color-text-primary, #FFFFFF);
+  margin: 0 0 4px 0;
+}
+
+/* Typography tokens applied */
+.rx-stats__number {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(48px, 6vw, 64px); /* Slightly larger, bolder numbers */
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.rx-stats__affix {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-accent, #E3000F);
+  margin: 0 4px;
+}
+
+.rx-stats__label {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 600;
+  color: var(--color-text-muted, #A0A0A0);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.3;
+}

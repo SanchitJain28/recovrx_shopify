@@ -1,0 +1,119 @@
+{{ 'section-contact.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-contact.js' | asset_url }}" defer></script>
+
+<section class="rx-contact rx-bg-primary section-reveal">
+  <div class="rx-container rx-contact__wrapper">
+    <!-- Left Column: Info -->
+    <div class="rx-contact__info">
+      <h1 class="rx-contact__title">{{ section.settings.title }}</h1>
+      <p class="rx-contact__subtitle">{{ section.settings.subtitle }}</p>
+
+      <div class="rx-contact__details">
+        <div class="rx-contact__detail-item">
+          <h3 class="rx-contact__detail-title">Clinical Support</h3>
+          <p class="rx-contact__detail-text">support@recovrx.in</p>
+        </div>
+        <div class="rx-contact__detail-item">
+          <h3 class="rx-contact__detail-title">Business Hours</h3>
+          <p class="rx-contact__detail-text">Mon - Fri, 9:00 AM - 6:00 PM (IST)</p>
+        </div>
+        <div class="rx-contact__detail-item">
+          <h3 class="rx-contact__detail-title">Partnerships & Wholesale</h3>
+          <p class="rx-contact__detail-text">partners@recovrx.in</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Form -->
+    <div class="rx-contact__form-wrapper">
+      {% form 'contact', class: 'rx-form' %}
+        {% if form.posted_successfully? %}
+          <div class="rx-form__message rx-form__message--success" tabindex="-1" autofocus>
+            <p>✓ Message sent successfully. Our clinical team will reach out within 24 hours.</p>
+          </div>
+        {% elsif form.errors %}
+          <div class="rx-form__message rx-form__message--error" tabindex="-1" autofocus>
+            <p>✗ Please adjust the following details:</p>
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="rx-form__row">
+          <div class="rx-form__group">
+            <label for="ContactForm-name" class="rx-form__label">Name</label>
+            <input
+              type="text"
+              id="ContactForm-name"
+              name="contact[name]"
+              class="rx-form__input"
+              placeholder="Enter your name"
+              required
+            >
+          </div>
+
+          <div class="rx-form__group">
+            <label for="ContactForm-email" class="rx-form__label">Email</label>
+            <input
+              type="email"
+              id="ContactForm-email"
+              name="contact[email]"
+              class="rx-form__input"
+              placeholder="Enter your email"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="rx-form__group">
+          <label for="ContactForm-order" class="rx-form__label">Order Number (Optional)</label>
+          <input
+            type="text"
+            id="ContactForm-order"
+            name="contact[order_number]"
+            class="rx-form__input"
+            placeholder="e.g. #10293"
+          >
+        </div>
+
+        <div class="rx-form__group">
+          <label for="ContactForm-body" class="rx-form__label">Message</label>
+          <textarea
+            rows="5"
+            id="ContactForm-body"
+            name="contact[body]"
+            class="rx-form__input"
+            placeholder="How can our support team help you?"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="rx-btn rx-btn--primary">Send Message</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "GET IN TOUCH."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Questions about your recovery gear or an existing order? Reach out to our performance team."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Page"
+    }
+  ]
+}
+{% endschema %}

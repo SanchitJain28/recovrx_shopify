@@ -1,0 +1,163 @@
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-hero-banner.js' | asset_url }}" defer="defer"></script>
+
+<section
+  class="rx-hero"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+  aria-label="Hero Carousel"
+>
+  <div class="rx-hero__slider">
+    {%- for block in section.blocks -%}
+      {%- assign loading_strategy = 'lazy' -%}
+      {%- if forloop.first -%}
+        {%- assign loading_strategy = 'eager' -%}
+      {%- endif -%}
+
+      <article
+        class="rx-hero__slide {% if forloop.first %}is-active{% endif %}"
+        data-index="{{ forloop.index0 }}"
+        {{ block.shopify_attributes }}
+        aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+      >
+        <!-- Background Image -->
+        <div class="rx-hero__image-wrapper">
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 2000
+              | image_tag:
+                class: 'rx-hero__image',
+                loading: loading_strategy,
+                widths: '750, 1100, 1500, 1780, 2000',
+                alt: block.settings.heading
+              | escape
+            }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'rx-hero__image placeholder-svg' }}
+          {%- endif -%}
+          <!-- Overlay for text readability -->
+          <div
+            class="rx-hero__overlay"
+            style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"
+          ></div>
+        </div>
+
+        <!-- Content -->
+        <div class="rx-hero__content-container page-width">
+          <div class="rx-hero__content">
+            {%- if block.settings.heading != blank -%}
+              <h1 class="rx-hero__headline">{{ block.settings.heading }}</h1>
+            {%- endif -%}
+
+            {%- if block.settings.subtext != blank -%}
+              <p class="rx-hero__subtext">{{ block.settings.subtext }}</p>
+            {%- endif -%}
+
+            {%- if block.settings.btn_text != blank and block.settings.btn_link != blank -%}
+              <a href="{{ block.settings.btn_link }}" class="rx-hero__cta rx-btn">
+                {{ block.settings.btn_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+
+  <!-- Carousel Navigation Dots -->
+  {%- if section.blocks.size > 1 -%}
+    <div class="rx-hero__controls page-width">
+      <div class="rx-hero__dots" role="tablist">
+        {%- for block in section.blocks -%}
+          <button
+            class="rx-hero__dot {% if forloop.first %}is-active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-label="Go to slide {{ forloop.index }}"
+            data-index="{{ forloop.index0 }}"
+          ></button>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "label": "Autoplay Speed",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Overlay Opacity",
+          "default": 40
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Theragun PRO Plus"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Unlock faster recovery, with all the benefits of a 15 minute massage in just two minutes."
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Shop PRO Plus"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner Carousel",
+      "blocks": [{ "type": "slide" }, { "type": "slide" }]
+    }
+  ]
+}
+{% endschema %}

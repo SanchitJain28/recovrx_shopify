@@ -1,0 +1,139 @@
+/* LIGHT MODE INVERSION: Specific to this section */
+.rx-research {
+  --color-primary: #FFFFFF;         /* Pure white section background */
+  --color-surface: #F8F6F4;         /* Warm off-white/beige block background to match image */
+  --color-text-primary: #0A0A0A;    /* Deep black for headings and bold text */
+  --color-text-muted: #5A5A5A;      /* Dim grey for normal paragraph text */
+  --color-border: #D1D1D1;          /* Slightly darker grey for the column dividers */
+
+  background-color: var(--color-primary);
+  padding: clamp(40px, 5vw, 60px) 16px;
+  overflow: hidden;
+}
+
+.rx-research .page-width {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.rx-research__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 0 0 24px 0; /* Tight margin above the box */
+  line-height: 1.1;
+  /* If you want it to look EXACTLY like Therabody's serif, you can override with Barlow: 
+     font-family: var(--font-subhead); font-weight: 500; text-transform: none; */
+}
+
+/* The beige container box */
+.rx-research__container {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  padding: clamp(24px, 4vw, 40px); /* Compact inner padding */
+}
+
+.rx-research__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0; /* Gaps handled by column padding for border alignment */
+}
+
+@media (min-width: 768px) {
+  .rx-research__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Columns & Dividers */
+.rx-research__column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rx-research__column:first-child {
+  padding-top: 0;
+}
+
+.rx-research__column:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .rx-research__column {
+    padding: 0 32px;
+    border-bottom: none;
+    border-right: 1px solid var(--color-border);
+  }
+  
+  .rx-research__column:first-child {
+    padding-left: 0;
+  }
+  
+  .rx-research__column:last-child {
+    padding-right: 0;
+    border-right: none;
+  }
+}
+
+/* Image / Logo */
+.rx-research__logo-wrapper {
+  height: 48px; /* Fixed height to keep grids aligned regardless of logo size */
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.rx-research__logo {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.rx-research__logo-placeholder {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-size: 20px;
+}
+
+/* Rich Text Styling - Matching the Image's Bold vs Normal contrast */
+.rx-research__text {
+  flex-grow: 1; /* Pushes the "Learn more" link to the bottom evenly */
+  margin-bottom: 20px;
+}
+
+.rx-research__text p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.5vw, 15px);
+  color: var(--color-text-muted); /* Grey base text */
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rx-research__text strong,
+.rx-research__text b {
+  color: var(--color-text-primary); /* Deep black for bold text */
+  font-weight: 600;
+}
+
+/* Learn More Link */
+.rx-research__link {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s ease;
+}
+
+.rx-research__link:hover {
+  opacity: 0.7;
+}

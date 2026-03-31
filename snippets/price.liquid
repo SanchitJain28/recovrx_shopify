@@ -109,17 +109,24 @@
         </span>
       </div>
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
-        {% render 'unit-price', price: product.selected_or_first_available_variant.unit_price, measurement: product.selected_or_first_available_variant.unit_price_measurement %}
+        {% render 'unit-price',
+          price: product.selected_or_first_available_variant.unit_price,
+          measurement: product.selected_or_first_available_variant.unit_price_measurement
+        %}
       {%- endif -%}
     </div>
-    {%- if show_badges -%}
-      <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-        {{ 'products.product.on_sale' | t }}
-      </span>
+    {%- assign target = product.selected_or_first_available_variant | default: product -%}
 
-      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
-        {{ 'products.product.sold_out' | t }}
-      </span>
+    {%- if show_badges -%}
+      {%- if target.available == false -%}
+        <span class="rx-badge rx-badge--sold-out">
+          {{ 'products.product.sold_out' | t }}
+        </span>
+      {%- elsif target.compare_at_price > target.price -%}
+        <span class="rx-badge rx-badge--sale">
+          {{ 'products.product.on_sale' | t }}
+        </span>
+      {%- endif -%}
     {%- endif -%}
   </div>
 {% endunless %}

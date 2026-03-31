@@ -1,0 +1,74 @@
+{{ 'section-sticky-atc.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-sticky-atc.js' | asset_url }}" defer="defer"></script>
+
+{%- assign sticky_image = product.selected_or_first_available_variant.featured_image
+  | default: product.featured_image
+-%}
+{%- assign main_product_form_id = 'product-form-' | append: 'template--' | append: page.handle -%}
+
+<div
+  id="RxStickyATC-{{ section.id }}"
+  class="rx-sticky-atc"
+  data-section-id="{{ section.id }}"
+>
+  <div class="rx-sticky-atc__inner page-width">
+    <div class="rx-sticky-atc__details">
+      <img
+        src="{{ sticky_image | image_url: width: 100 }}"
+        alt="{{ sticky_image.alt | escape }}"
+        class="rx-sticky-atc__image"
+        loading="lazy"
+        width="50"
+        height="50"
+      >
+      <div>
+        <span class="rx-sticky-atc__title">{{ product.title }}</span>
+        <div id="StickyPrice-{{ section.id }}" class="rx-sticky-atc__price">
+          {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: '' -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="rx-sticky-atc__actions">
+      <div class="rx-sticky-atc__payment-terms">
+        {%- assign installment_form_id = 'product-form-installment-sticky-' | append: section.id -%}
+        {%- form 'product', product, id: installment_form_id, class: 'installment' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {{ form | payment_terms }}
+        {%- endform -%}
+      </div>
+
+      <button
+        type="submit"
+        name="add"
+        class="rx-btn rx-btn--primary rx-sticky-atc__btn"
+        data-main-form-target
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <span>
+          {%- if product.selected_or_first_available_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky ATC",
+  "tag": "div",
+  "class": "rx-sticky-atc-section",
+  "limit": 1,
+  "presets": [
+    {
+      "name": "Sticky ATC"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,404 @@
+{% schema %}
+{
+  "name": "Header",
+  "class": "rx-header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 130
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "nav_menu",
+      "label": "Navigation Menu",
+      "default": "main-menu",
+      "info": "Top-level links appear in the nav bar. Child links appear in the dropdown."
+    },
+    {
+      "type": "header",
+      "content": "Pages"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_about",
+      "label": "Show About Us",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "search_icon",
+      "label": "Custom Search Icon",
+      "info": "Leave blank to use the default SVG icon."
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_icon",
+      "label": "Custom Cart Icon",
+      "info": "Leave blank to use the default SVG icon."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}
+
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-header.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign nav_links = linklists[section.settings.nav_menu].links
+-%}
+
+<header class="rx-header js-rx-header" role="banner">
+  <div class="rx-header__inner">
+    <!-- LEFT: Logo -->
+    <div class="rx-header__logo-wrap">
+      <a href="{{ routes.root_url }}" class="rx-header__logo-link" aria-label="{{ shop.name }}">
+        {%- if section.settings.logo != blank -%}
+          {%- assign logo_width = section.settings.logo_width | append: 'px' -%}
+          {%- assign logo_style = 'width: ' | append: logo_width | append: ';' -%}
+          {{
+            section.settings.logo
+            | image_url: width: 400
+            | image_tag: alt: shop.name, class: 'rx-header__logo-img', style: logo_style
+          }}
+        {%- else -%}
+          <span class="rx-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- CENTER: Desktop Nav -->
+    <nav class="rx-header__nav" aria-label="Main navigation">
+      <ul class="rx-nav__list" role="list">
+        {%- for link in nav_links -%}
+          <li class="rx-nav__item{% if link.links != blank %} rx-nav__item--has-drop{% endif %}" role="none">
+            <a
+              href="{{ link.url }}"
+              class="rx-nav__link"
+              {% if link.links != blank %}
+                aria-haspopup="true" aria-expanded="false"
+              {% endif %}
+              {% if link.url == request.path %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{ link.title }}
+              {%- if link.links != blank -%}
+                <svg class="rx-nav__chevron" width="10" height="10" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {%- endif -%}
+            </a>
+            {%- if link.links != blank -%}
+              <ul class="rx-nav__drop" role="list">
+                {%- for child in link.links -%}
+                  <li role="none">
+                    <a href="{{ child.url }}" class="rx-nav__drop-link">{{ child.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+
+        <!-- Collections dropdown -->
+        {%- assign has_collections = false -%}
+        {%- for col in collections -%}
+          {%- if col.products_count > 0 -%}
+            {%- assign has_collections = true -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_collections -%}
+          <li class="rx-nav__item rx-nav__item--has-drop" role="none">
+            <a href="{{ routes.collections_url }}" class="rx-nav__link" aria-haspopup="true" aria-expanded="false">
+              Collections
+              <svg class="rx-nav__chevron" width="10" height="10" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="rx-nav__drop" role="list">
+              {%- for col in collections -%}
+                {%- if col.products_count > 0 -%}
+                  <li role="none">
+                    <a href="{{ col.url }}" class="rx-nav__drop-link">{{ col.title }}</a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </li>
+        {%- endif -%}
+
+        <!-- Static pages -->
+        {%- if section.settings.show_about -%}
+          <li class="rx-nav__item" role="none">
+            <a
+              href="/pages/about-us"
+              class="rx-nav__link"
+              {% if request.path contains 'about' %}
+                aria-current="page"
+              {% endif %}
+              >About</a
+            >
+          </li>
+        {%- endif -%}
+        {%- if section.settings.show_faq -%}
+          <li class="rx-nav__item" role="none">
+            <a
+              href="/pages/faq"
+              class="rx-nav__link"
+              {% if request.path contains 'faq' %}
+                aria-current="page"
+              {% endif %}
+              >FAQ</a
+            >
+          </li>
+        {%- endif -%}
+        {%- if section.settings.show_contact -%}
+          <li class="rx-nav__item" role="none">
+            <a
+              href="/pages/contact"
+              class="rx-nav__link"
+              {% if request.path contains 'contact' %}
+                aria-current="page"
+              {% endif %}
+              >Contact</a
+            >
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    <!-- RIGHT: Icons -->
+    <div class="rx-header__actions">
+      <!-- Search trigger -->
+      <button class="rx-header__icon-btn js-rx-search-open" aria-label="Search" aria-expanded="false">
+        {%- if section.settings.search_icon != blank -%}
+          {{
+            section.settings.search_icon
+            | image_url: width: 48
+            | image_tag: class: 'rx-header__icon-img', alt: 'Search'
+          }}
+        {%- else -%}
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        {%- endif -%}
+      </button>
+
+      <!-- Cart -->
+      <a
+        href="{{ routes.cart_url }}"
+        class="rx-header__icon-btn rx-header__cart"
+        id="cart-icon-bubble"
+        aria-label="Cart ({{ cart.item_count }} items)"
+      >
+        {%- if section.settings.cart_icon != blank -%}
+          {{ section.settings.cart_icon | image_url: width: 48 | image_tag: class: 'rx-header__icon-img', alt: 'Cart' }}
+        {%- else -%}
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        {%- endif -%}
+        {%- if cart.item_count > 0 -%}
+          <span class="rx-header__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="rx-header__hamburger js-rx-menu-open"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="rx-mobile-drawer"
+      >
+        <span class="rx-hamburger__bar"></span>
+        <span class="rx-hamburger__bar"></span>
+        <span class="rx-hamburger__bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="rx-search-overlay js-rx-search-overlay" role="search" aria-hidden="true">
+  <div class="rx-search-overlay__inner">
+    <!-- Added form wrapper for positioning the predictive dropdown -->
+    <div class="rx-search-overlay__form-wrap">
+      <form action="{{ routes.search_url }}" method="get" class="rx-search-overlay__form js-predictive-form">
+        <input type="hidden" name="type" value="product">
+        <input
+          class="rx-search-overlay__input js-predictive-input"
+          type="search"
+          name="q"
+          placeholder="Search products…"
+          autocomplete="off"
+          aria-label="Search"
+        >
+        <button type="submit" class="rx-search-overlay__submit" aria-label="Submit search">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Predictive Search Results Container -->
+      <div class="rx-predictive-results js-predictive-results"></div>
+    </div>
+
+    <button class="rx-search-overlay__close js-rx-search-close" aria-label="Close search">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Mobile overlay -->
+<div class="rx-overlay js-rx-overlay" aria-hidden="true"></div>
+
+<!-- Mobile drawer -->
+<nav id="rx-mobile-drawer" class="rx-mobile-drawer js-rx-drawer" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="rx-mobile-drawer__header">
+    <span class="rx-mobile-drawer__brand">Menu</span>
+    <button class="rx-mobile-drawer__close js-rx-menu-close" aria-label="Close menu">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul class="rx-mobile-nav__list" role="list">
+    {%- for link in nav_links -%}
+      <li class="rx-mobile-nav__item">
+        <a href="{{ link.url }}" class="rx-mobile-nav__link">{{ link.title }}</a>
+        {%- if link.links != blank -%}
+          <ul class="rx-mobile-nav__sub" role="list">
+            {%- for child in link.links -%}
+              <li>
+                <a href="{{ child.url }}" class="rx-mobile-nav__sub-link">{{ child.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+
+    {%- if has_collections -%}
+      <li class="rx-mobile-nav__item rx-mobile-nav__item--section">
+        <span class="rx-mobile-nav__section-label">Collections</span>
+        <ul class="rx-mobile-nav__sub" role="list">
+          {%- for col in collections -%}
+            {%- if col.products_count > 0 -%}
+              <li>
+                <a href="{{ col.url }}" class="rx-mobile-nav__sub-link">{{ col.title }}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </li>
+    {%- endif -%}
+
+    {%- if section.settings.show_about or section.settings.show_faq or section.settings.show_contact -%}
+      <li class="rx-mobile-nav__item rx-mobile-nav__item--section">
+        <span class="rx-mobile-nav__section-label">Pages</span>
+        <ul class="rx-mobile-nav__sub" role="list">
+          {%- if section.settings.show_about -%}
+            <li><a href="/pages/about-us" class="rx-mobile-nav__sub-link">About Us</a></li>
+          {%- endif -%}
+          {%- if section.settings.show_faq -%}
+            <li><a href="/pages/faq" class="rx-mobile-nav__sub-link">FAQ</a></li>
+          {%- endif -%}
+          {%- if section.settings.show_contact -%}
+            <li><a href="/pages/contact" class="rx-mobile-nav__sub-link">Contact</a></li>
+          {%- endif -%}
+        </ul>
+      </li>
+    {%- endif -%}
+  </ul>
+</nav>

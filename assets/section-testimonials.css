@@ -1,0 +1,157 @@
+.rx-testimonials {
+  background-color: var(--color-primary, #0A0A0A);
+  padding: clamp(40px, 5vw, 60px) 16px; /* Consistent compact breathing space */
+  overflow: hidden;
+}
+
+.rx-testimonials .page-width {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.rx-testimonials__header {
+  text-align: center;
+  margin-bottom: 32px; /* Tight margin */
+}
+
+.rx-testimonials__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  color: var(--color-text-primary, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.rx-testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; /* Tight gap for clinical density */
+}
+
+@media (min-width: 768px) {
+  .rx-testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Review Card */
+.rx-testimonials__card {
+  background-color: var(--color-surface, #242424);
+  border: 1px solid var(--color-border, #2A2A2A);
+  border-radius: 8px; /* Slight rounding */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.rx-testimonials__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-text-faint, #5A5A5A);
+}
+
+/* Stars */
+.rx-testimonials__stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.rx-testimonials__star {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-faint, #5A5A5A); /* Unfilled state */
+}
+
+.rx-testimonials__star.is-filled {
+  color: var(--color-text-primary, #FFFFFF); /* Premium White Stars instead of generic yellow */
+  fill: var(--color-text-primary, #FFFFFF);
+}
+
+/* Quote */
+.rx-testimonials__quote {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.5vw, 15px);
+  color: var(--color-text-muted, #A0A0A0);
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  flex-grow: 1; /* Pushes author to the bottom evenly */
+}
+
+/* Author Info */
+.rx-testimonials__author-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rx-testimonials__author {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.rx-testimonials__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-success, #22C55E); /* Clean Green Trust Indicator */
+}
+
+.rx-testimonials__verified svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* --- New Avatar Profile Layout --- */
+.rx-testimonials__card-top {
+  flex-grow: 1; /* Pushes the profile to the bottom evenly across cards */
+}
+
+.rx-testimonials__author-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.rx-testimonials__avatar,
+.rx-testimonials__avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Fallback letter circle if no image uploaded */
+.rx-testimonials__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary, #1E1E1E);
+  color: var(--color-text-primary, #FFFFFF);
+  border: 1px solid var(--color-border, #2A2A2A);
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Update Quote Margin to work with new flex layout */
+.rx-testimonials__quote {
+  margin: 0 0 24px 0;
+  flex-grow: 0; 
+}

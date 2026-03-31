@@ -1,0 +1,168 @@
+.rx-hero {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  min-height: 600px;
+  background-color: var(--color-primary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.rx-hero__slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rx-hero__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.rx-hero__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.rx-hero__image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.rx-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.5;
+}
+
+.placeholder-svg {
+  background-color: var(--color-secondary);
+  fill: var(--color-text-faint);
+}
+
+.rx-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  z-index: 2;
+}
+
+/* Content Layout */
+.rx-hero__content-container {
+  position: relative;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rx-hero__content {
+  max-width: 650px;
+  color: var(--color-text-primary);
+}
+
+.rx-hero__headline {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 6vw, 96px); /* Responsive Bebas Neue sizing */
+  font-weight: 400;
+  line-height: 1.0;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: white;
+}
+
+.rx-hero__subtext {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 2vw, 18px); /* Inter body copy */
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin: 0 0 40px 0;
+}
+
+/* Button */
+.rx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-text-primary); /* White btn like Theragun */
+  color: var(--color-primary); /* Deep black text */
+  font-family: var(--font-subhead); /* Barlow */
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 8px; /* Slight clinical rounding */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.rx-btn:hover {
+  background-color: var(--color-accent); /* Electric Red hover */
+  color: var(--color-text-primary);
+}
+
+/* Controls */
+.rx-hero__controls {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rx-hero__dots {
+  display: flex;
+  gap: 12px;
+}
+
+.rx-hero__dot {
+  width: 40px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rx-hero__dot.is-active {
+  background-color: var(--color-text-primary);
+}
+
+/* Ensure invisible state for GSAP before JS loads */
+.rx-hero__headline,
+.rx-hero__subtext,
+.rx-hero__cta {
+  opacity: 0;
+  transform: translateY(20px);
+}

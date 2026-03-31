@@ -1,0 +1,145 @@
+/* ==========================================================================
+   RecovrX - Sticky Add to Cart
+   ========================================================================== */
+.rx-sticky-atc {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-primary-alt, #111111);
+  border-top: 1px solid var(--color-border, #2A2A2A);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: visibility 0.3s, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.rx-sticky-atc.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Desktop ── */
+.rx-sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.875rem 2rem;
+  max-width: var(--page-width, 1200px);
+  margin: 0 auto;
+}
+
+.rx-sticky-atc__details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.rx-sticky-atc__image {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+  .rx-sticky-atc__image {
+    display: block;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border: 1px solid var(--color-border, #2A2A2A);
+    border-radius: 6px;
+    background-color: var(--color-surface, #242424);
+    flex-shrink: 0;
+  }
+}
+
+.rx-sticky-atc__title {
+  display: block;
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.rx-sticky-atc__price .price__regular .price-item,
+.rx-sticky-atc__price .price__sale .price-item--sale {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+}
+
+.rx-sticky-atc__price .price__regular .price-item--compare,
+.rx-sticky-atc__price .price__sale .price-item--regular {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #A0A0A0);
+  text-decoration: line-through;
+}
+
+.rx-sticky-atc__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rx-sticky-atc__payment-terms {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #A0A0A0);
+  text-align: right;
+}
+
+.rx-sticky-atc__actions .rx-btn {
+  min-width: 200px;
+}
+
+/* ── Mobile ── */
+@media screen and (max-width: 749px) {
+  .rx-sticky-atc__inner {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  /* Show compact details on mobile */
+  .rx-sticky-atc__details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .rx-sticky-atc__title {
+    font-size: 0.8125rem;
+    max-width: 100%;
+  }
+
+  .rx-sticky-atc__price .price__regular .price-item,
+  .rx-sticky-atc__price .price__sale .price-item--sale {
+    font-size: 0.875rem;
+  }
+
+  .rx-sticky-atc__payment-terms {
+    display: none;
+  }
+
+  .rx-sticky-atc__actions {
+    flex-shrink: 0;
+  }
+
+  .rx-sticky-atc__actions .rx-btn {
+    min-width: unset;
+    width: auto;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+}

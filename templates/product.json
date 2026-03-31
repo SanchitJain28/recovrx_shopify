@@ -12,15 +12,26 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "product_tags_bkTwMM": {
+          "type": "product_tags",
+          "settings": {
+            "tag_limit": 5,
+            "icon": "none",
+            "tag_bg_color": "#121212",
+            "tag_border_color": "#9f9f9f",
+            "tag_text_color": "#ffffff"
+          }
+        },
+        "custom_rating_WVX3w4": {
+          "type": "custom_rating",
           "settings": {}
         },
         "price": {
@@ -38,6 +49,14 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "aov_ai_bundle_offer_volume_tHDVLX": {
+          "type": "shopify://apps/aov-ai-bundle/blocks/offer-volume/0335d423-143c-4ad7-b224-99a1db74a9ee",
+          "settings": {}
+        },
+        "aov_ai_bundle_offer_inline_Y8tMcT": {
+          "type": "shopify://apps/aov-ai-bundle/blocks/offer-inline/0335d423-143c-4ad7-b224-99a1db74a9ee",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -45,26 +64,34 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
+        "trust_bar_K67RTX": {
+          "type": "trust_bar",
           "settings": {
-            "share_label": "Share"
+            "trust_1": "30-Day Risk-Free Trial",
+            "trust_2": "Clinically Proven",
+            "trust_3": "1-Year Warranty"
+          }
+        },
+        "kaching_subscriptions_app_block_4YMfxa": {
+          "type": "shopify://apps/kaching-subscriptions/blocks/app-block/1fa39fd7-f6a3-4bbc-9383-7d91d27b44f5",
+          "settings": {
+            "product": "{{product}}"
           }
         }
       },
       "block_order": [
-        "vendor",
         "title",
+        "description",
+        "product_tags_bkTwMM",
+        "custom_rating_WVX3w4",
         "price",
         "variant_picker",
         "quantity_selector",
+        "aov_ai_bundle_offer_volume_tHDVLX",
+        "aov_ai_bundle_offer_inline_Y8tMcT",
         "buy_buttons",
-        "description",
-        "share"
+        "trust_bar_K67RTX",
+        "kaching_subscriptions_app_block_4YMfxa"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -78,8 +105,100 @@
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
+        "padding_top": 12,
         "padding_bottom": 12
+      }
+    },
+    "section_proven_benefits_TN3UJG": {
+      "type": "section-proven-benefits",
+      "blocks": {
+        "benefit_zy4aMc": {
+          "type": "benefit",
+          "settings": {
+            "title": "Relieves pain",
+            "text": "and tightness by targeting deep tissue knots"
+          }
+        },
+        "benefit_8wnQE3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Increases mobility",
+            "text": "and flexibility to support better movement"
+          }
+        },
+        "benefit_yhJddU": {
+          "type": "benefit",
+          "settings": {
+            "title": "Speeds up recovery",
+            "text": "by decreasing muscle soreness and fatigue"
+          }
+        },
+        "benefit_NYk4zA": {
+          "type": "benefit",
+          "settings": {
+            "title": "Enhances performance",
+            "text": "by reactivating muscles to boost endurance"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_zy4aMc",
+        "benefit_8wnQE3",
+        "benefit_yhJddU",
+        "benefit_NYk4zA"
+      ],
+      "name": "Proven Benefits",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "Scientifically-proven benefits"
+      }
+    },
+    "section_faq_L7apbb": {
+      "type": "section-faq",
+      "blocks": {
+        "faq_item_3CKXCN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use the RecovrX massage gun?",
+            "answer": "<p>For optimal muscle recovery, we recommend using the device for 2-3 minutes per muscle group. It can be used pre-workout to activate muscles or post-workout to reduce lactic acid buildup.</p>"
+          }
+        },
+        "faq_item_ECJtEJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are the materials safe for direct skin contact?",
+            "answer": "<p>Yes. All RecovrX attachments and compression sleeves are made from medical-grade, hypoallergenic materials designed to be tough on knots but gentle on your skin.</p>"
+          }
+        },
+        "faq_item_iQKjVY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer a warranty on performance tools?",
+            "answer": "<p>Absolutely. All electronic devices, including our percussion massagers, come with a standard 1-year clinical warranty covering mechanical defects.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_3CKXCN",
+        "faq_item_ECJtEJ",
+        "faq_item_iQKjVY"
+      ],
+      "name": "RecovrX FAQ",
+      "settings": {
+        "bg_color": "#0a0a0a",
+        "title": "CLINICAL INSIGHTS & FAQS",
+        "subtitle": "Everything you need to know about optimizing your recovery."
+      }
+    },
+    "section_image_with_text_jaBj8n": {
+      "type": "section-image-with-text",
+      "name": "Image with Text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image": "shopify://shop_images/Whisk_2b0b204a02609a4881d45c8137f52f5ddr.jpg",
+        "heading": "Durability that keeps up with your toughest days",
+        "text": "<p>Our Percussion Massage Gun is our most durable model yet, built to handle everyday bumps and knocks for reliable performance and recovery session after session.</p>",
+        "image_position": "left"
       }
     },
     "related-products": {
@@ -99,10 +218,40 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "17749580840fc92d4d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_VHHxp7": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_VHHxp7"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "sticky_atc_yFKLjf": {
+      "type": "sticky-atc",
+      "name": "Sticky ATC",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "related-products"
+    "section_proven_benefits_TN3UJG",
+    "section_faq_L7apbb",
+    "section_image_with_text_jaBj8n",
+    "related-products",
+    "17749580840fc92d4d",
+    "sticky_atc_yFKLjf"
   ]
 }

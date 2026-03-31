@@ -1,0 +1,120 @@
+{%- comment -%}
+  RecovrX - FAQ Section
+{%- endcomment -%}
+
+{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-faq.js' | asset_url }}" defer="defer"></script>
+
+<div class="rx-faq section-{{ section.id }}-padding" style="background-color: {{ section.settings.bg_color }};">
+  <div class="rx-faq__container">
+    <div class="rx-faq__header">
+      <h2 class="rx-faq__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="rx-faq__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="rx-faq__list" role="list">
+      {%- for block in section.blocks -%}
+        <div class="rx-faq__item" {{ block.shopify_attributes }}>
+          <button class="rx-faq__question" aria-expanded="false" aria-controls="faq-answer-{{ block.id }}">
+            <span class="rx-faq__question-text">{{ block.settings.question }}</span>
+            <span class="rx-faq__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div id="faq-answer-{{ block.id }}" class="rx-faq__answer-wrapper">
+            <div class="rx-faq__answer">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RecovrX FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "CLINICAL INSIGHTS & FAQS"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Everything you need to know about optimizing your recovery."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How often should I use the RecovrX massage gun?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>For optimal muscle recovery, we recommend using the device for 2-3 minutes per muscle group. It can be used pre-workout to activate muscles or post-workout to reduce lactic acid buildup.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RecovrX FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How often should I use the RecovrX massage gun?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are the materials safe for direct skin contact?",
+            "answer": "<p>Yes. All RecovrX attachments and compression sleeves are made from medical-grade, hypoallergenic materials designed to be tough on knots but gentle on your skin.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer a warranty on performance tools?",
+            "answer": "<p>Absolutely. All electronic devices, including our percussion massagers, come with a standard 1-year clinical warranty covering mechanical defects.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

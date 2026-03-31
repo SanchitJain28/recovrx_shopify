@@ -8,6 +8,26 @@
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
 
+:root {
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-subhead: 'Barlow', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+:root {
+  --color-primary: #0A0A0A;
+  --color-primary-alt: #111111;
+  --color-secondary: #1E1E1E;
+  --color-surface: #242424;
+  --color-accent: #E3000F;
+  --color-accent-hover: #B8000C;
+  --color-text-primary: #FFFFFF;
+  --color-text-muted: #A0A0A0;
+  --color-text-faint: #5A5A5A;
+  --color-border: #2A2A2A;
+  --color-success: #22C55E;
+}
+
 .product-card-wrapper .card,
 .contains-card--product {
   --border-radius: var(--product-card-corner-radius);
@@ -77,9 +97,7 @@
 /* base */
 
 .page-width {
-  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
@@ -3290,6 +3308,7 @@ details-disclosure > details {
   .scroll-trigger:not(.scroll-trigger--offscreen).animate--slide-in {
     animation: var(--animation-slide-in);
     animation-delay: calc(var(--animation-order) * 75ms);
+    padding: 10px;
   }
 
   .scroll-trigger.scroll-trigger--design-mode.animate--fade-in,

@@ -1,0 +1,101 @@
+{{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-announcement-bar.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .rx-announcement-bar-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_y }}px 0;
+  }
+{%- endstyle -%}
+
+<div
+  class="rx-announcement-bar rx-announcement-bar-{{ section.id }}"
+  data-speed="{{ section.settings.speed }}"
+  role="region"
+  aria-label="Announcement"
+>
+  {%- if section.settings.link != blank -%}
+    <a href="{{ section.settings.link }}" class="rx-announcement-bar__link" aria-label="Announcement link">
+  {%- endif -%}
+
+  <div class="rx-announcement-bar__inner">
+    <!-- Track 1 -->
+    <div class="rx-announcement-bar__track">
+      {%- for i in (1..8) -%}
+        <span class="rx-announcement-bar__text">{{ section.settings.text }}</span>
+        <span class="rx-announcement-bar__divider" aria-hidden="true">•</span>
+      {%- endfor -%}
+    </div>
+    <!-- Track 2 (Duplicate for seamless loop) -->
+    <div class="rx-announcement-bar__track" aria-hidden="true">
+      {%- for i in (1..8) -%}
+        <span class="rx-announcement-bar__text">{{ section.settings.text }}</span>
+        <span class="rx-announcement-bar__divider" aria-hidden="true">•</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.link != blank -%}
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "section-announcement-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Free shipping over ₹999"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link (Optional)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#E3000F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "sec",
+      "label": "Animation Speed",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

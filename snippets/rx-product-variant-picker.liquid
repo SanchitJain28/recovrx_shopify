@@ -1,0 +1,62 @@
+{% comment %}
+  RecovrX Custom Variant Picker
+  Usage: {% render 'rx-product-variant-picker', product: product %}
+{% endcomment %}
+
+{{ 'rx-product-variant.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'rx-product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- unless product.has_only_default_variant -%}
+  <rx-variant-selects data-section="{{ section.id }}" data-url="{{ product.url }}">
+    {%- for option in product.options_with_values -%}
+      <fieldset class="rx-variant-group">
+        <legend class="rx-variant-group__label">
+          <span class="rx-variant-group__name">{{ option.name }}:</span>
+          <span class="rx-variant-group__value" data-selected-value="{{ option.position }}">
+            {{ option.selected_value }}
+          </span>
+        </legend>
+
+        <div class="rx-variant-group__options">
+          {%- for value in option.values -%}
+            {%- liquid
+              assign is_color = false
+              assign downcased_option = option.name | downcase
+              if downcased_option contains 'color' or downcased_option contains 'colour'
+                assign is_color = true
+              endif
+            -%}
+
+            <input
+              type="radio"
+              class="rx-sr-only"
+              id="RxOption-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+              name="options[{{ option.name | escape }}]"
+              value="{{ value | escape }}"
+              data-position="{{ option.position }}"
+              {% if value.selected %}
+                checked
+              {% endif %}
+            >
+
+            <label
+              for="RxOption-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+              class="rx-variant-pill {% if is_color %}rx-variant-pill--color{% endif %} {% unless value.available %}rx-variant-pill--sold-out{% endunless %}"
+              {% if is_color %}
+                style="--swatch-color: {{ value | downcase | replace: ' ', '' }};"
+              {% endif %}
+            >
+              {% unless is_color %}
+                {{ value }}
+              {% endunless %}
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+    {%- endfor -%}
+
+    <script type="application/json" data-variant-json>
+      {{ product.variants | json }}
+    </script>
+  </rx-variant-selects>
+{%- endunless -%}

@@ -1,0 +1,130 @@
+/* Container & Backgrounds */
+.rx-policy {
+  background-color: var(--color-primary);
+  padding: 80px 20px;
+  color: var(--color-text-primary);
+}
+
+.rx-policy__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+.rx-policy__header {
+  text-align: center;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 40px;
+}
+
+.rx-policy__title {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 6vw, 60px); /* Responsive Bebas Neue */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  color: white;
+}
+
+.rx-policy__subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+/* Policy Blocks */
+.rx-policy__content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.rx-policy__block-title {
+  font-family: var(--font-subhead);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Rich Text Content Styling */
+.rx-policy__block-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.rx-policy__block-text p {
+  margin-bottom: 16px;
+}
+
+.rx-policy__block-text strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* Lists styling to match the premium clinical vibe */
+.rx-policy__block-text ul,
+.rx-policy__block-text ol {
+  margin-left: 20px;
+  margin-bottom: 24px;
+  padding-left: 10px;
+}
+
+.rx-policy__block-text li {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.rx-policy__block-text ul li::marker {
+  color: var(--color-accent); /* Electric Red bullets */
+}
+
+.rx-policy__block-text ol li::marker {
+  color: var(--color-accent);
+  font-family: var(--font-subhead);
+  font-weight: 600;
+}
+
+/* Footer & Links */
+.rx-policy__footer {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.rx-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.rx-link:hover {
+  color: var(--color-accent-hover);
+  border-bottom: 1px solid var(--color-accent-hover);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .rx-policy {
+    padding: 60px 20px;
+  }
+  
+  .rx-policy__content {
+    gap: 32px;
+  }
+
+  .rx-policy__block-title {
+    font-size: 20px;
+  }
+}

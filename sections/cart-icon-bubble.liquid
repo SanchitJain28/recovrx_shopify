@@ -1,15 +1,28 @@
-{% if cart == empty %}
-  <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-{% else %}
-  <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-{% endif %}
+{% comment %}
+  RecovrX - Custom Cart Icon Bubble
+{% endcomment %}
+
+{%- if settings.cart_icon != blank -%}
+  {{ settings.cart_icon | image_url: width: 48 | image_tag: class: 'rx-header__icon-img', alt: 'Cart' }}
+{%- else -%}
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+  </svg>
+{%- endif -%}
 
 <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-{%- if cart != empty -%}
-  <div class="cart-count-bubble">
-    {%- if cart.item_count < 100 -%}
-      <span aria-hidden="true">{{ cart.item_count }}</span>
-    {%- endif -%}
-    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-  </div>
+
+{%- if cart.item_count > 0 -%}
+  <span class="rx-header__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+  <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
 {%- endif -%}

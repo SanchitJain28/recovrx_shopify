@@ -1,0 +1,104 @@
+{{ 'section-usp-stats.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-usp-stats.js' | asset_url }}" defer></script>
+
+<section class="rx-stats" aria-label="Brand Statistics">
+  <div class="page-width">
+    <div class="rx-stats__grid">
+      {%- for block in section.blocks -%}
+        <div class="rx-stats__item" {{ block.shopify_attributes }}>
+          <!-- Red accent line for that premium tech feel -->
+          <div class="rx-stats__accent"></div>
+
+          <div class="rx-stats__data">
+            {%- if block.settings.prefix != blank -%}
+              <span class="rx-stats__affix">{{ block.settings.prefix }}</span>
+            {%- endif -%}
+
+            <span class="rx-stats__number" data-target="{{ block.settings.number }}"> 0 </span>
+
+            {%- if block.settings.suffix != blank -%}
+              <span class="rx-stats__affix">{{ block.settings.suffix }}</span>
+            {%- endif -%}
+          </div>
+
+          <p class="rx-stats__label">{{ block.settings.label }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "USP / Stats Bar",
+  "tag": "section",
+  "class": "section-usp-stats",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Target Number",
+          "default": "50",
+          "info": "Use numbers only (e.g., 50, 4.9, 30)"
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix (Optional)",
+          "info": "e.g., $"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix (Optional)",
+          "default": "K+",
+          "info": "e.g., K+, %, -Day"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Athletes Recovered"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP / Stats Bar",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "50",
+            "suffix": "K+",
+            "label": "Athletes Recovered"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "4.9",
+            "suffix": "/5",
+            "label": "Average Rating"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "30",
+            "suffix": "-Day",
+            "label": "Risk-Free Returns"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

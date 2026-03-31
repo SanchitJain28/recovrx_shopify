@@ -1,13 +1,23 @@
+/* ==========================================================================
+   RecovrX - Pricing Component (PDP Light Theme)
+   ========================================================================== */
+
 .price {
-  font-size: 1.6rem;
-  letter-spacing: 0.1rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
-  color: rgb(var(--color-foreground));
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: 1.25rem; /* 20px - Base size */
+  font-weight: 600;
+  letter-spacing: 0; /* Removed bulky Dawn letter-spacing */
+  line-height: 1.2; /* Tight, compact line height */
+  color: #0A0A0A; /* Primary Price Color */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Compact spacing between price items */
 }
 
 .price > * {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .price.price--unavailable {
@@ -15,20 +25,19 @@
 }
 
 .price--end {
+  justify-content: flex-end;
   text-align: right;
 }
 
+.price--center {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Base Price Item */
 .price .price-item {
   display: inline-block;
-  margin: 0 1rem 0 0;
-}
-
-.price__regular .price-item--regular {
-  margin-right: 0;
-}
-
-.price:not(.price--show-badge) .price-item--last:last-of-type {
-  margin: 0;
+  margin: 0; /* Relying on flex gap for cleaner spacing */
 }
 
 @media screen and (min-width: 750px) {
@@ -37,17 +46,20 @@
   }
 }
 
+/* Large Price (Main Product Page Display) */
 .price--large {
-  font-size: 1.6rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
-  letter-spacing: 0.13rem;
+  font-size: 2rem; /* 24px - Prominent but compact */
 }
 
 @media screen and (min-width: 750px) {
   .price--large {
-    font-size: 1.8rem;
+    font-size: 2rem; /* 28px - Matches the top-end of title sizing */
   }
 }
+
+/* --------------------------------------------------------------------------
+   Sale & Availability States
+   -------------------------------------------------------------------------- */
 
 .price--sold-out .price__availability,
 .price__regular {
@@ -69,32 +81,35 @@
   display: inline-block;
 }
 
-.volume-pricing--sale-badge .price__badge-sale {
-  margin-left: 0.5rem;
-}
-
 .price--on-sale .price__sale {
-  display: initial;
+  display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 0.5rem; /* Compact gap between sale price and regular price */
 }
 
-.price--center {
-  display: initial;
-  justify-content: center;
-}
-
+/* Compare at Price (Strikethrough) */
 .price--on-sale .price-item--regular {
   text-decoration: line-through;
-  color: rgba(var(--color-foreground), 0.75);
-  font-size: 1.3rem;
+  color: #A0A0A0; /* Compare price color */
+  font-size: 1.125rem; /* 18px - Smaller than sale price */
+  font-weight: 500; /* Slightly lighter weight for contrast */
 }
 
+/* Main Sale Price */
+.price--on-sale .price-item--sale {
+  color: #0A0A0A; /* Keeps primary price color even on sale, premium feel */
+}
+
+/* Unit Price (e.g., per 100ml) */
 .unit-price {
+  font-family: var(--font-body, 'Inter', sans-serif);
   display: block;
-  font-size: 1.1rem;
-  letter-spacing: 0.04rem;
-  line-height: calc(1 + 0.2 / var(--font-body-scale));
-  margin-top: 0.2rem;
-  color: rgba(var(--color-foreground), 0.7);
+  font-size: 0.75rem; /* 12px - Muted and compact */
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+  color: #5A5A5A; /* Muted text color */
 }

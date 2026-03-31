@@ -273,3 +273,27 @@ gsap.to('.marquee__inner', {
 - [ ] Product CSV exported
 - [ ] Image folders: original + background-removed
 - [ ] Collaborator invite sent
+
+## Rules
+
+- Every section has its own `.css`, `.js` file in `assets/`
+- Every `.liquid` section includes a full Shopify `{% schema %}` block
+- JS uses GSAP for scroll-triggered reveals (`ScrollTrigger`) and hero animations
+- No jQuery — vanilla JS only
+- CSS uses custom properties (tokens above) — no hardcoded values
+- All images use Shopify's `image_url` filter with `loading="lazy"`
+- Forms use Shopify's native `contact` form action or custom metafield-backed logic
+- Accessibility: semantic HTML, `aria-label`, keyboard nav on all interactive elements
+- Performance: CSS/JS loaded per-section via `{{ 'file.css' | asset_url | stylesheet_tag }}`
+
+---
+## Naming Conventions
+
+| Type | Pattern | Example |
+|---|---|---|
+| Section file | `section-[name].liquid` | `section-hero-banner.liquid` |
+| CSS asset | `section-[name].css` | `section-hero-banner.css` |
+| JS asset | `section-[name].js` | `section-hero-banner.js` |
+| Snippet | `[component].liquid` | `product-card.liquid` |
+| CSS class | `rx-[block]__[element]` | `rx-hero__title` |
+| Schema id | `kebab-case` | `hero-banner` |

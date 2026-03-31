@@ -1,0 +1,148 @@
+{{ 'section-why-choose-us.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-why-choose-us.js' | asset_url }}" defer="defer"></script>
+
+<section class="rx-why" aria-labelledby="why-heading-{{ section.id }}">
+  <div class="page-width">
+    <div class="rx-why__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 id="why-heading-{{ section.id }}" class="rx-why__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+    </div>
+
+    <div class="rx-why__grid">
+      {%- for block in section.blocks -%}
+        <div class="rx-why__card" {{ block.shopify_attributes }}>
+          <div class="rx-why__icon-wrapper">
+            {%- case forloop.index -%}
+              {%- when 1 -%}
+                <!-- Faster Recovery Icon (Pulse/Activity) -->
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="rx-why__icon"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              {%- when 2 -%}
+                <!-- Pain Relief Icon (Shield/Protection) -->
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="rx-why__icon"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="M9 12h6"></path>
+                  <path d="M12 9v6"></path>
+                </svg>
+              {%- when 3 -%}
+                <!-- Better Performance Icon (Trending Up) -->
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="rx-why__icon"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              {%- else -%}
+                <!-- Fallback Check Icon -->
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="rx-why__icon"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            {%- endcase -%}
+          </div>
+
+          <h3 class="rx-why__title">{{ block.settings.title }}</h3>
+          <p class="rx-why__desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "tag": "section",
+  "class": "section-why-choose",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Why athletes choose us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Value Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Faster recovery"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Accelerate your downtime with clinically backed percussive therapy that flushes lactic acid instantly."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Faster recovery",
+            "description": "Accelerate your downtime with clinically backed percussive therapy that flushes lactic acid instantly."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Pain relief",
+            "description": "Target deep tissue knots and chronic soreness with precision-engineered amplitudes and scientifically proven attachments."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Better performance",
+            "description": "Prime your muscles before the workout to increase mobility, range of motion, and explosive strength."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

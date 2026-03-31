@@ -1,0 +1,42 @@
+.rx-announcement-bar {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  z-index: 100;
+  font-family: var(--font-subhead);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.rx-announcement-bar__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+}
+
+.rx-announcement-bar__inner {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.rx-announcement-bar__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.rx-announcement-bar__text {
+  padding: 0 15px;
+}
+
+.rx-announcement-bar__divider {
+  opacity: 0.5;
+  font-size: 10px; /* Slightly smaller dot for aesthetics */
+}

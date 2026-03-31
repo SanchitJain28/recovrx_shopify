@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+      color: white;
 }
 
 .totals > * {
@@ -11,6 +12,8 @@
 
 .totals > h2 {
   font-size: calc(var(--font-heading-scale) * 1.6rem);
+      color: white;
+
 }
 
 .totals * {

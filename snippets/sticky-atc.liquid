@@ -1,0 +1,52 @@
+{% comment %} RecovrX - Sticky Add to Cart Snippet (Corrected) {% endcomment %}
+
+{{ 'section-sticky-atc.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-sticky-atc.js' | asset_url }}" defer="defer"></script>
+
+<div id="RxStickyATC-{{ section.id }}" class="rx-sticky-atc" data-product-form-id="{{ product_form_id }}">
+  <div class="rx-sticky-atc__inner page-width">
+    <div class="rx-sticky-atc__details">
+      <img
+        src="{{ product.selected_or_first_available_variant.featured_image.src | image_url: width: 100 }}"
+        alt="{{ product.selected_or_first_available_variant.featured_image.alt | escape }}"
+        class="rx-sticky-atc__image"
+        loading="lazy"
+        width="50"
+        height="50"
+      >
+      <div>
+        <span class="rx-sticky-atc__title">{{ product.title }}</span>
+        <div id="StickyPrice-{{ section.id }}" class="rx-sticky-atc__price">
+          {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: '' -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="rx-sticky-atc__actions">
+      <div class="rx-sticky-atc__payment-terms">
+        {%- assign product_form_installment_id = 'product-form-installment-sticky-' | append: section.id -%}
+        {%- form 'product', product, id: product_form_installment_id, class: 'installment' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {{ form | payment_terms }}
+        {%- endform -%}
+      </div>
+      <button
+        type="submit"
+        name="add"
+        form="{{ product_form_id }}"
+        class="rx-btn rx-btn--primary"
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <span>
+          {%- if product.selected_or_first_available_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

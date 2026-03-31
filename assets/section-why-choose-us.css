@@ -1,0 +1,94 @@
+.rx-why {
+  background-color: var(--color-primary, #0A0A0A);
+  padding: clamp(40px, 5vw, 60px) 16px; /* Strict, compact spacing */
+  overflow: hidden;
+}
+
+.rx-why .page-width {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.rx-why__header {
+  text-align: center;
+  margin-bottom: 32px; /* Tight, clinical gap */
+}
+
+.rx-why__heading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  color: var(--color-text-primary, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* 3-Column Grid */
+.rx-why__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; /* Ultra-compact mobile gap */
+}
+
+@media (min-width: 768px) {
+  .rx-why__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px; /* Premium desktop gap */
+  }
+}
+
+/* Feature Cards */
+.rx-why__card {
+  background-color: var(--color-surface, #242424);
+  border: 1px solid var(--color-border, #2A2A2A);
+  border-radius: 8px; /* Clinical sharp/soft edge */
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.rx-why__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-text-faint, #5A5A5A);
+}
+
+/* Icon Wrapper */
+.rx-why__icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-primary-alt, #111111);
+  border: 1px solid var(--color-border, #2A2A2A);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--color-accent, #E3000F); /* Electric Red pop */
+}
+
+.rx-why__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Typography */
+.rx-why__title {
+  font-family: var(--font-subhead, 'Barlow', sans-serif);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 600;
+  color: var(--color-text-primary, #FFFFFF);
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.rx-why__desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.5vw, 15px);
+  color: var(--color-text-muted, #A0A0A0);
+  line-height: 1.5;
+  margin: 0;
+}
